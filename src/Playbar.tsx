@@ -360,23 +360,23 @@ function Playbar({
                     pointerEvents: isMouseMoving ? "auto" : "none",
                   }}
                 />
-                <Link to="/dashboard">
-                  <CloseFullscreen
-                    sx={{
-                      height: "auto",
-                      width: "30px",
-                      right: "4%",
-                      bottom: "7%",
-                      position: "fixed",
-                      fill: "grey",
-                      ":hover": {
-                        fill: "white",
-                      },
-                    }}
-                  />
-                </Link>
               </>
             )}
+            <Link to="/dashboard">
+              <CloseFullscreen
+                sx={{
+                  height: "auto",
+                  width: "30px",
+                  right: "4%",
+                  bottom: "7%",
+                  position: "fixed",
+                  fill: "grey",
+                  ":hover": {
+                    fill: "white",
+                  },
+                }}
+              />
+            </Link>
           </>
         )}
       </div>
