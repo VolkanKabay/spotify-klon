@@ -88,7 +88,7 @@ function SearchDashBoard() {
               }}
             >
               <Link
-                to="/"
+                to="/dashboard"
                 style={{ textDecoration: "none", color: "lightgrey" }}
               >
                 <Box
