@@ -1,3 +1,4 @@
+import React, { useState, useEffect, useRef } from "react";
 import { Box, Container, LinearProgress, Typography } from "@mui/material";
 import {
   CheckCircle,
@@ -9,15 +10,28 @@ import {
   Replay,
   CloseFullscreen,
 } from "@mui/icons-material";
-import { useState, useEffect } from "react";
+
+import sweaterWeatherSong from "../public/images/sweater-weather.webm";
 
 function Playbar() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isMouseMoving, setIsMouseMoving] = useState(true);
   const [opacity, setOpacity] = useState(1);
+  const [isShuffleActive, setIsShuffleActive] = useState(false);
+  const [isReplayActive, setIsReplayActive] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isDurationAvailable, setIsDurationAvailable] = useState(false);
+
+  const audioRef = useRef(new Audio(sweaterWeatherSong));
 
   const handlePausePlayToggle = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
     setIsPlaying((prevIsPlaying) => !prevIsPlaying);
   };
 
@@ -32,13 +46,37 @@ function Playbar() {
     setIsFullscreen((prevIsFullscreen) => !prevIsFullscreen);
   };
 
+  const handleShuffleClick = () => {
+    setIsShuffleActive((prevIsShuffleActive) => !prevIsShuffleActive);
+  };
+
+  const handleReplayClick = () => {
+    setIsReplayActive((prevIsReplayActive) => !prevIsReplayActive);
+  };
+
   useEffect(() => {
+    audioRef.current.volume = 0.2;
+
+    const handleTimeUpdate = () => {
+      setCurrentTime(audioRef.current.currentTime);
+    };
+
+    const handleLoadedMetadata = () => {
+      setDuration(audioRef.current.duration);
+      setIsDurationAvailable(true);
+    };
+
+    audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
+    audioRef.current.addEventListener("loadedmetadata", handleLoadedMetadata);
+
     let timeout: number;
 
     setOpacity(0);
     timeout = setTimeout(() => {
       setOpacity(1);
     }, 500);
+
+    setIsMouseMoving(false);
 
     const handleMouseMove = () => {
       setIsMouseMoving(true);
@@ -61,6 +99,11 @@ function Playbar() {
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
       clearTimeout(timeout);
+      audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+      audioRef.current.removeEventListener(
+        "loadedmetadata",
+        handleLoadedMetadata
+      );
     };
   }, []);
 
@@ -81,32 +124,35 @@ function Playbar() {
                 bottom: "15.75%",
               }}
             >
-              0:32
+              {formatTime(currentTime)}
             </Typography>
-            <LinearProgress
-              value={30}
-              variant="determinate"
-              sx={{
-                backgroundColor: "rgba(255, 255, 255, 0.5)",
-                "& .MuiLinearProgress-bar": {
-                  backgroundColor: "white",
-                  ":hover": {
-                    backgroundColor: "lightgreen",
-                  },
-                },
-                position: "fixed",
-                bottom: "17%",
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: "87%",
-              }}
-            />
-            <Typography
-              sx={{ position: "fixed", right: "4%", bottom: "15.75%" }}
-            >
-              4:00
-            </Typography>
-
+            {isDurationAvailable && (
+              <>
+                <LinearProgress
+                  value={(currentTime / duration) * 100}
+                  variant="determinate"
+                  sx={{
+                    backgroundColor: "rgba(255, 255, 255, 0.5)",
+                    "& .MuiLinearProgress-bar": {
+                      backgroundColor: "white",
+                      ":hover": {
+                        backgroundColor: "lightgreen",
+                      },
+                    },
+                    position: "fixed",
+                    bottom: "17%",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "87%",
+                  }}
+                />
+                <Typography
+                  sx={{ position: "fixed", right: "4%", bottom: "15.75%" }}
+                >
+                  {formatTime(duration)}
+                </Typography>
+              </>
+            )}
             <CheckCircle
               sx={{
                 height: "auto",
@@ -132,11 +178,12 @@ function Playbar() {
                 sx={{
                   height: "auto",
                   width: "30px",
-                  fill: "grey",
+                  fill: isShuffleActive ? "lightgreen" : "grey",
                   ":hover": {
                     fill: "white",
                   },
                 }}
+                onClick={handleShuffleClick}
               />
               <SkipPrevious
                 sx={{
@@ -185,11 +232,12 @@ function Playbar() {
                 sx={{
                   height: "auto",
                   width: "30px",
-                  fill: "grey",
+                  fill: isReplayActive ? "lightgreen" : "grey",
                   ":hover": {
                     fill: "white",
                   },
                 }}
+                onClick={handleReplayClick}
               />
             </Container>
             <CloseFullscreen
@@ -211,6 +259,15 @@ function Playbar() {
       </div>
     </Container>
   );
+}
+
+function formatTime(time: number) {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+    2,
+    "0"
+  )}`;
 }
 
 export default Playbar;
