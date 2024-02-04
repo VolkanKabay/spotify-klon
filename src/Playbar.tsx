@@ -18,6 +18,7 @@ import {
   VolumeOffOutlined,
   VolumeDownOutlined,
 } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 import sweaterWeatherSong from "/images/sweater-weather.mp3";
 import meetMeAtOurSpotSong from "/images/meetmeatourspot.mp3";
@@ -33,7 +34,6 @@ function Playbar({
   onPrevSong: () => void;
 }>) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [isMouseMoving, setIsMouseMoving] = useState(true);
   const [opacity, setOpacity] = useState(1);
   const [isShuffleActive, setIsShuffleActive] = useState(false);
@@ -86,17 +86,6 @@ function Playbar({
     audioRef.current.currentTime = newTime;
 
     setCurrentTime(newTime);
-  };
-
-  const handleFullscreenToggle = () => {
-    if (!isFullscreen) {
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-      }
-    } else {
-      document.exitFullscreen();
-    }
-    setIsFullscreen((prevIsFullscreen) => !prevIsFullscreen);
   };
 
   const handleShuffleClick = () => {
@@ -371,20 +360,21 @@ function Playbar({
                     pointerEvents: isMouseMoving ? "auto" : "none",
                   }}
                 />
-                <CloseFullscreen
-                  sx={{
-                    height: "auto",
-                    width: "30px",
-                    right: "4%",
-                    bottom: "7%",
-                    position: "fixed",
-                    fill: isFullscreen ? "white" : "grey",
-                    ":hover": {
-                      fill: "white",
-                    },
-                  }}
-                  onClick={handleFullscreenToggle}
-                />
+                <Link to="/dashboard">
+                  <CloseFullscreen
+                    sx={{
+                      height: "auto",
+                      width: "30px",
+                      right: "4%",
+                      bottom: "7%",
+                      position: "fixed",
+                      fill: "grey",
+                      ":hover": {
+                        fill: "white",
+                      },
+                    }}
+                  />
+                </Link>
               </>
             )}
           </>

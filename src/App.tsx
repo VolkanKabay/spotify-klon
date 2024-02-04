@@ -3,6 +3,8 @@ import "./App.css";
 import Playbar from "./Playbar";
 import SweaterWeather from "./SweaterWeather";
 import MeetMeAtOurSpot from "./MeetMeAtOurSpot";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Dashboard from "./Dashboard";
 
 function App() {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
@@ -16,10 +18,27 @@ function App() {
   };
 
   return (
-    <div style={{ userSelect: "none" }}>
-      {currentSongIndex === 0 ? <SweaterWeather /> : <MeetMeAtOurSpot />}
-      <Playbar onNextSong={handleNextSong} onPrevSong={handlePrevSong} />
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div style={{ userSelect: "none" }}>
+              {currentSongIndex === 0 ? (
+                <SweaterWeather />
+              ) : (
+                <MeetMeAtOurSpot />
+              )}
+              <Playbar
+                onNextSong={handleNextSong}
+                onPrevSong={handlePrevSong}
+              />
+            </div>
+          }
+        />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
