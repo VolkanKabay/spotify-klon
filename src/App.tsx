@@ -2,7 +2,7 @@ import "./App.css";
 
 import Playbar from "./Playbar";
 import SongInfo from "./SongInfo";
-import backgroundImage from "../public/images/theneighbourhood.jpg";
+import backgroundImage from "/images/theneighbourhood.jpg";
 
 function App() {
   const containerStyle: React.CSSProperties = {

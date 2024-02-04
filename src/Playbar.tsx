@@ -19,7 +19,7 @@ import {
   VolumeDownOutlined,
 } from "@mui/icons-material";
 
-import sweaterWeatherSong from "../public/images/sweater-weather.webm";
+import sweaterWeatherSong from "/images/sweater-weather.webm";
 
 function Playbar() {
   const [isPlaying, setIsPlaying] = useState(false);

@@ -2,7 +2,7 @@ import { Box, Container, Typography } from "@mui/material";
 import { Image } from "mui-image";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import coverImage from "../public/images/sweater-weather-cover.jpg";
+import coverImage from "/images/sweater-weather-cover.jpg";
 function SongInfo() {
   return (
     <>
