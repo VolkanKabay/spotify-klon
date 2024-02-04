@@ -9,7 +9,10 @@ import {
   SkipNext,
   Replay,
   CloseFullscreen,
+  VolumeOff,
 } from "@mui/icons-material";
+import { Slider } from "@mui/material";
+import { VolumeDown } from "@mui/icons-material";
 
 import sweaterWeatherSong from "../public/images/sweater-weather.webm";
 
@@ -53,9 +56,15 @@ function Playbar() {
   const handleReplayClick = () => {
     setIsReplayActive((prevIsReplayActive) => !prevIsReplayActive);
   };
-
+  const handleVolumeChange = (event, newValue) => {
+    const newVolume = newValue / 100; // Normalize the value to be between 0 and 1
+    audioRef.current.volume = newVolume;
+  };
+  const muteSong = () => {
+    audioRef.current.volume = 0;
+  };
   useEffect(() => {
-    audioRef.current.volume = 0.2;
+    audioRef.current.volume = 0.15;
 
     const handleTimeUpdate = () => {
       setCurrentTime(audioRef.current.currentTime);
@@ -240,6 +249,44 @@ function Playbar() {
                 onClick={handleReplayClick}
               />
             </Container>
+            {audioRef.current.volume === 0 ? (
+              <VolumeOff
+                fontSize="large"
+                sx={{
+                  color: "white",
+                  marginRight: "10px",
+                  right: "12%",
+                  bottom: "6.75%",
+                  position: "fixed",
+                }}
+              />
+            ) : (
+              <VolumeDown
+                fontSize="large"
+                onClick={muteSong}
+                sx={{
+                  color: "white",
+                  marginRight: "10px",
+                  right: "12%",
+                  bottom: "6.75%",
+                  position: "fixed",
+                }}
+              />
+            )}
+            <Slider
+              value={audioRef.current.volume * 100} // Set the initial value based on the current volume
+              onChange={handleVolumeChange}
+              sx={{
+                color: "white",
+                width: "100px",
+                marginRight: "10px",
+                right: "6%",
+                bottom: "7%",
+                position: "fixed",
+                pointerEvents: isMouseMoving ? "auto" : "none",
+              }}
+            />
+
             <CloseFullscreen
               sx={{
                 height: "auto",
