@@ -42,7 +42,6 @@ function Playbar({ onNextSong }) {
     _event: Event,
     value: number | number[]
   ) => {
-    // Call your original handleVolumeChange function here
     handleVolumeChange({} as ChangeEvent<HTMLInputElement>, value);
   };
 
@@ -73,6 +72,7 @@ function Playbar({ onNextSong }) {
 
     setCurrentTime(newTime);
   };
+
   const handleFullscreenToggle = () => {
     if (!isFullscreen) {
       if (document.documentElement.requestFullscreen) {
@@ -91,6 +91,7 @@ function Playbar({ onNextSong }) {
   const handleReplayClick = () => {
     setIsReplayActive((prevIsReplayActive) => !prevIsReplayActive);
   };
+
   const handleVolumeChange = (
     _event: ChangeEvent<HTMLInputElement>,
     newValue: number | number[]
@@ -100,9 +101,11 @@ function Playbar({ onNextSong }) {
       : newValue / 100;
     audioRef.current.volume = newVolume;
   };
+
   const muteSong = () => {
     audioRef.current.volume = 0;
   };
+
   useEffect(() => {
     audioRef.current.volume = 0.15;
 
@@ -115,8 +118,20 @@ function Playbar({ onNextSong }) {
       setIsDurationAvailable(true);
     };
 
+    const handleSongEnd = () => {
+      if (isReplayActive) {
+        // If replay is active, restart the current song
+        audioRef.current.currentTime = 0;
+        audioRef.current.play();
+      } else {
+        // Otherwise, move to the next song
+        handleSkipNext();
+      }
+    };
+
     audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
     audioRef.current.addEventListener("loadedmetadata", handleLoadedMetadata);
+    audioRef.current.addEventListener("ended", handleSongEnd);
 
     let timeout: number;
 
@@ -155,8 +170,9 @@ function Playbar({ onNextSong }) {
         "loadedmetadata",
         handleLoadedMetadata
       );
+      currentAudioRef.removeEventListener("ended", handleSongEnd);
     };
-  }, []);
+  }, [isReplayActive]);
 
   return (
     <Container>
@@ -239,6 +255,7 @@ function Playbar({ onNextSong }) {
                 onClick={handleShuffleClick}
               />
               <SkipPrevious
+                onClick={handleSkipNext}
                 sx={{
                   height: "auto",
                   width: "30px",
