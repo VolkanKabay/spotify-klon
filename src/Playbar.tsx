@@ -1,5 +1,11 @@
-import { useState, useEffect, useRef } from "react";
-import { Box, Container, LinearProgress, Typography } from "@mui/material";
+import { useState, useEffect, useRef, ChangeEvent } from "react";
+import {
+  Box,
+  Container,
+  LinearProgress,
+  Typography,
+  Slider,
+} from "@mui/material";
 import {
   CheckCircle,
   Pause,
@@ -9,10 +15,9 @@ import {
   SkipNext,
   Replay,
   CloseFullscreen,
-  VolumeOff,
+  VolumeOffOutlined,
+  VolumeDownOutlined,
 } from "@mui/icons-material";
-import { Slider } from "@mui/material";
-import { VolumeDown } from "@mui/icons-material";
 
 import sweaterWeatherSong from "../public/images/sweater-weather.webm";
 
@@ -28,7 +33,13 @@ function Playbar() {
   const [isDurationAvailable, setIsDurationAvailable] = useState(false);
 
   const audioRef = useRef(new Audio(sweaterWeatherSong));
-
+  const handleVolumeSliderChange = (
+    _event: Event,
+    value: number | number[]
+  ) => {
+    // Call your original handleVolumeChange function here
+    handleVolumeChange({} as ChangeEvent<HTMLInputElement>, value);
+  };
   const handlePausePlayToggle = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -37,7 +48,16 @@ function Playbar() {
     }
     setIsPlaying((prevIsPlaying) => !prevIsPlaying);
   };
+  const handleSeek = (event: React.MouseEvent<{}>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const clickX = event.clientX - rect.left;
+    const percentage = (clickX / rect.width) * 100;
 
+    const newTime = (percentage / 100) * duration;
+    audioRef.current.currentTime = newTime;
+
+    setCurrentTime(newTime);
+  };
   const handleFullscreenToggle = () => {
     if (!isFullscreen) {
       if (document.documentElement.requestFullscreen) {
@@ -56,8 +76,13 @@ function Playbar() {
   const handleReplayClick = () => {
     setIsReplayActive((prevIsReplayActive) => !prevIsReplayActive);
   };
-  const handleVolumeChange = (event, newValue) => {
-    const newVolume = newValue / 100; // Normalize the value to be between 0 and 1
+  const handleVolumeChange = (
+    _event: ChangeEvent<HTMLInputElement>,
+    newValue: number | number[]
+  ) => {
+    const newVolume = Array.isArray(newValue)
+      ? newValue[0] / 100
+      : newValue / 100;
     audioRef.current.volume = newVolume;
   };
   const muteSong = () => {
@@ -101,6 +126,8 @@ function Playbar() {
       setIsMouseMoving(false);
     };
 
+    const currentAudioRef = audioRef.current;
+
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseleave", handleMouseLeave);
 
@@ -108,8 +135,8 @@ function Playbar() {
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
       clearTimeout(timeout);
-      audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
-      audioRef.current.removeEventListener(
+      currentAudioRef.removeEventListener("timeupdate", handleTimeUpdate);
+      currentAudioRef.removeEventListener(
         "loadedmetadata",
         handleLoadedMetadata
       );
@@ -153,7 +180,9 @@ function Playbar() {
                     left: "50%",
                     transform: "translateX(-50%)",
                     width: "87%",
+                    cursor: "pointer", // Add this line to set the cursor to pointer
                   }}
+                  onClick={handleSeek} // Handle seek when clicking on the loading bar
                 />
                 <Typography
                   sx={{ position: "fixed", right: "4%", bottom: "15.75%" }}
@@ -250,7 +279,7 @@ function Playbar() {
               />
             </Container>
             {audioRef.current.volume === 0 ? (
-              <VolumeOff
+              <VolumeOffOutlined
                 fontSize="large"
                 sx={{
                   color: "white",
@@ -261,7 +290,7 @@ function Playbar() {
                 }}
               />
             ) : (
-              <VolumeDown
+              <VolumeDownOutlined
                 fontSize="large"
                 onClick={muteSong}
                 sx={{
@@ -275,7 +304,7 @@ function Playbar() {
             )}
             <Slider
               value={audioRef.current.volume * 100} // Set the initial value based on the current volume
-              onChange={handleVolumeChange}
+              onChange={handleVolumeSliderChange}
               sx={{
                 color: "white",
                 width: "100px",
