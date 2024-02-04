@@ -13,7 +13,8 @@ import { HomeOutlined, Menu, SearchOutlined } from "@mui/icons-material";
 import { NewPlaylist } from "./NewPlaylist";
 import { NewFavSongs } from "./NewFavSongs";
 import { Link } from "react-router-dom";
-import { MusicAppBar } from "./MusicAppBar";
+import MusicAppBar from "./MusicAppBar";
+import { useState } from "react";
 
 const theme = createTheme({
   typography: {
@@ -48,10 +49,19 @@ const theme = createTheme({
 });
 
 function Dashboard() {
+  const [, setCurrentSongIndex] = useState(0);
+
+  const handleNextSong = () => {
+    setCurrentSongIndex((prevIndex) => (prevIndex + 1) % 2);
+  };
+
+  const handlePrevSong = () => {
+    setCurrentSongIndex((prevIndex) => (prevIndex - 1 + 2) % 2);
+  };
   return (
     <ThemeProvider theme={theme}>
       <Drawer variant="permanent" open={true}>
-        <MusicAppBar />
+        <MusicAppBar onNextSong={handleNextSong} onPrevSong={handlePrevSong} />
         <Paper
           sx={{
             width: "330px",
