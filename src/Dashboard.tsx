@@ -13,6 +13,7 @@ import { HomeOutlined, Menu, SearchOutlined } from "@mui/icons-material";
 import { NewPlaylist } from "./NewPlaylist";
 import { NewFavSongs } from "./NewFavSongs";
 import { Link } from "react-router-dom";
+import { MusicAppBar } from "./MusicAppBar";
 
 const theme = createTheme({
   typography: {
@@ -50,6 +51,7 @@ function Dashboard() {
   return (
     <ThemeProvider theme={theme}>
       <Drawer variant="permanent" open={true}>
+        <MusicAppBar />
         <Paper
           sx={{
             width: "330px",

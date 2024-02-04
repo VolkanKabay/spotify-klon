@@ -20,6 +20,8 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+
         <Route
           path="/"
           element={
@@ -36,7 +38,6 @@ function App() {
             </div>
           }
         />
-        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );
