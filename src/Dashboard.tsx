@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Chip,
   Drawer,
@@ -9,7 +10,14 @@ import {
   ThemeProvider,
   createTheme,
 } from "@mui/material";
-import { HomeOutlined, Menu, SearchOutlined } from "@mui/icons-material";
+import {
+  ArrowLeft,
+  ArrowRight,
+  HomeOutlined,
+  Menu,
+  Notifications,
+  SearchOutlined,
+} from "@mui/icons-material";
 import { NewPlaylist } from "./NewPlaylist";
 import { NewFavSongs } from "./NewFavSongs";
 import { Link } from "react-router-dom";
@@ -172,6 +180,94 @@ function Dashboard() {
           </List>
         </Paper>
       </Drawer>
+      <Paper
+        sx={{
+          position: "fixed",
+          top: "0%",
+          left: "0%",
+          width: "100%",
+          height: "100vh",
+          backgroundColor: "#111",
+        }}
+      />
+      <Paper
+        sx={{
+          position: "fixed",
+          top: "1.25%",
+          left: "15%",
+          width: "85%",
+          height: "100vh",
+          backgroundColor: "#171717",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            position: "fixed",
+            top: "2%",
+            left: "18.5%",
+            zIndex: 1,
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "5px",
+              padding: "12px",
+            }}
+          >
+            <ArrowLeft
+              fontSize="large"
+              sx={{
+                cursor: "pointer",
+                background: "#111",
+                borderRadius: "50%",
+              }}
+            />
+            <ArrowRight
+              fontSize="large"
+              sx={{
+                cursor: "pointer",
+                background: "#111",
+                borderRadius: "50%",
+              }}
+            />
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "15px",
+            position: "fixed",
+            right: "3%",
+            top: "3.3%",
+          }}
+        >
+          <Notifications
+            fontSize="medium"
+            sx={{
+              cursor: "pointer",
+              background: "#111",
+              borderRadius: "50%",
+              padding: "4px",
+              top: "3.2%",
+              right: "5.5%",
+              position: "fixed",
+            }}
+          />
+          <Avatar
+            src="/images/ANXIETY.jpg"
+            sx={{
+              height: "30px",
+              width: "30px",
+              cursor: "pointer",
+            }}
+          />
+        </Box>
+      </Paper>
     </ThemeProvider>
   );
 }
