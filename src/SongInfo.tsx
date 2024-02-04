@@ -2,6 +2,7 @@ import { Box, Container, Typography } from "@mui/material";
 import { Image } from "mui-image";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import coverImage from "../public/images/sweater-weather-cover.jpg";
 function SongInfo() {
   return (
     <>
@@ -47,7 +48,7 @@ function SongInfo() {
         </Box>
         <Image
           duration={0}
-          src="../public/images/sweater-weather-cover.jpg"
+          src={coverImage}
           alt="Sweater Weather by the Neighbourhood"
           style={{
             height: "auto",
