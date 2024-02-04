@@ -48,8 +48,8 @@ function Playbar() {
     }
     setIsPlaying((prevIsPlaying) => !prevIsPlaying);
   };
-  const handleSeek = (event: React.MouseEvent<{}>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
+  const handleSeek = (event: React.MouseEvent<object>) => {
+    const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
     const clickX = event.clientX - rect.left;
     const percentage = (clickX / rect.width) * 100;
 
@@ -180,9 +180,9 @@ function Playbar() {
                     left: "50%",
                     transform: "translateX(-50%)",
                     width: "87%",
-                    cursor: "pointer", // Add this line to set the cursor to pointer
+                    cursor: "pointer",
                   }}
-                  onClick={handleSeek} // Handle seek when clicking on the loading bar
+                  onClick={handleSeek}
                 />
                 <Typography
                   sx={{ position: "fixed", right: "4%", bottom: "15.75%" }}
