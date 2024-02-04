@@ -2,8 +2,8 @@ import { Box, Container, Typography } from "@mui/material";
 import { Image } from "mui-image";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import coverImage from "/images/sweater-weather-cover.jpg";
-import backgroundImage from "/images/theneighbourhood.jpg";
+import coverImage from "../public/images/sweater-weather-cover.jpg";
+import backgroundImage from "../public/images/theneighbourhood.jpg";
 import { useEffect, useState } from "react";
 
 function SweaterWeather() {

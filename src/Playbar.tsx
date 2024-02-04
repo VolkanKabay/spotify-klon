@@ -19,12 +19,18 @@ import {
   VolumeDownOutlined,
 } from "@mui/icons-material";
 
-import sweaterWeatherSong from "/images/sweater-weather.mp3";
-import meetMeAtOurSpotSong from "/images/meetmeatourspot.mp3";
+import sweaterWeatherSong from "../public/images/sweater-weather.mp3";
+import meetMeAtOurSpotSong from "../public/images/meetmeatourspot.mp3";
 
 const songs = [sweaterWeatherSong, meetMeAtOurSpotSong];
 
-function Playbar({ onNextSong }) {
+function Playbar({
+  onNextSong,
+  onPrevSong,
+}: Readonly<{
+  onNextSong: () => void;
+  onPrevSong: () => void;
+}>) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isMouseMoving, setIsMouseMoving] = useState(true);
@@ -59,6 +65,13 @@ function Playbar({ onNextSong }) {
     const nextSongIndex = (currentSongIndex + 1) % songs.length;
     setCurrentSongIndex(nextSongIndex);
     audioRef.current.src = songs[nextSongIndex];
+    audioRef.current.play();
+  };
+  const handlePrevSong = () => {
+    onPrevSong();
+    const prevSongIndex = (currentSongIndex - 1) % songs.length;
+    setCurrentSongIndex(prevSongIndex);
+    audioRef.current.src = songs[prevSongIndex];
     audioRef.current.play();
   };
 
@@ -120,11 +133,9 @@ function Playbar({ onNextSong }) {
 
     const handleSongEnd = () => {
       if (isReplayActive) {
-        // If replay is active, restart the current song
         audioRef.current.currentTime = 0;
         audioRef.current.play();
       } else {
-        // Otherwise, move to the next song
         handleSkipNext();
       }
     };
@@ -255,7 +266,7 @@ function Playbar({ onNextSong }) {
                 onClick={handleShuffleClick}
               />
               <SkipPrevious
-                onClick={handleSkipNext}
+                onClick={handlePrevSong}
                 sx={{
                   height: "auto",
                   width: "30px",

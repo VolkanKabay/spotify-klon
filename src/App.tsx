@@ -8,13 +8,16 @@ function App() {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
 
   const handleNextSong = () => {
-    setCurrentSongIndex((prevIndex) => (prevIndex + 1) % 2); // Assuming 2 songs for illustration
+    setCurrentSongIndex((prevIndex) => (prevIndex + 1) % 2);
+  };
+  const handlePrevSong = () => {
+    setCurrentSongIndex((prevIndex) => (prevIndex - 1) % 2);
   };
 
   return (
     <>
       {currentSongIndex === 0 ? <SweaterWeather /> : <MeetMeAtOurSpot />}
-      <Playbar onNextSong={handleNextSong} />
+      <Playbar onNextSong={handleNextSong} onPrevSong={handlePrevSong} />
     </>
   );
 }

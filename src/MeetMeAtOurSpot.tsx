@@ -2,8 +2,7 @@ import { Box, Container, Typography } from "@mui/material";
 import { Image } from "mui-image";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import coverImage from "/images/ANXIETY.jpg";
-import backgroundImage from "/images/ANXIETY.jpg";
+import coverImage from "../public/images/ANXIETY.jpg";
 import { useEffect, useState } from "react";
 
 function MeetMeAtOurSpot() {
@@ -14,7 +13,7 @@ function MeetMeAtOurSpot() {
   }, []);
 
   const containerStyle: React.CSSProperties = {
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),url(${backgroundImage})`,
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),url(${coverImage})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     width: "100%",
