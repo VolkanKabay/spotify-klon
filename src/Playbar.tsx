@@ -33,7 +33,7 @@ function Playbar() {
   };
 
   useEffect(() => {
-    let timeout;
+    let timeout: number;
 
     setOpacity(0);
     timeout = setTimeout(() => {
