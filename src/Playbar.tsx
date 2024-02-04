@@ -347,7 +347,7 @@ function Playbar({
               />
             )}
             <Slider
-              value={audioRef.current.volume * 100} // Set the initial value based on the current volume
+              value={audioRef.current.volume * 100}
               onChange={handleVolumeSliderChange}
               sx={{
                 color: "white",

@@ -1,4 +1,10 @@
-import { Box, Container, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { Image } from "mui-image";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,6 +12,8 @@ import coverImage from "../public/images/ANXIETY.jpg";
 import { useEffect, useState } from "react";
 
 function MeetMeAtOurSpot() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [opacity, setOpacity] = useState(0.1);
 
   useEffect(() => {
@@ -34,17 +42,21 @@ function MeetMeAtOurSpot() {
           flexWrap: "wrap",
           flexDirection: "row",
           position: "fixed",
-          top: "5%",
-          left: "5%",
+          top: isMobile ? "2%" : "5%",
+          left: isMobile ? "2%" : "5%",
         }}
       >
-        <FontAwesomeIcon icon={faSpotify} size="4x" color="gray" />
+        <FontAwesomeIcon
+          icon={faSpotify}
+          size={isMobile ? "2x" : "4x"}
+          color="gray"
+        />
         <Typography
-          fontSize={16}
+          fontSize={isMobile ? 12 : 16}
           letterSpacing={3}
           fontWeight={600}
-          marginTop={2.5}
-          marginLeft={3}
+          marginTop={isMobile ? 1 : 2.5}
+          marginLeft={isMobile ? 1.5 : 3}
           color={"gray"}
         >
           PLAYING FROM TRACK
@@ -55,33 +67,40 @@ function MeetMeAtOurSpot() {
             textAlign: "start",
             display: "flex",
             flexDirection: "column",
-            gap: "15px",
+            gap: isMobile ? "5px" : "15px",
             position: "fixed",
-            left: "17%",
-            bottom: "30%",
+            left: isMobile ? "55%" : "17%",
+            bottom: isMobile ? "25%" : "30%",
+            transform: isMobile ? "translateX(-50%)" : "none",
           }}
         >
-          <Typography fontSize={50} fontWeight={700}>
+          <Typography fontSize={isMobile ? 20 : 50} fontWeight={700}>
             Meet Me At Our Spot
           </Typography>
-          <Typography fontSize={24} fontWeight={600} color={"darkgray"}>
+          <Typography
+            fontSize={isMobile ? 12 : 24}
+            fontWeight={600}
+            color={"darkgray"}
+          >
             THE ANXIETY
           </Typography>
         </Box>
         <Image
           duration={0}
           src={coverImage}
-          alt="Sweater Weather by the Neighbourhood"
+          alt="Meet Me At Our Spot by THE ANXIETY"
           style={{
             height: "auto",
-            width: "160px",
+            width: isMobile ? "80px" : "160px",
             position: "fixed",
-            left: "6%",
-            bottom: "30%",
+            left: isMobile ? "20%" : "6%",
+            bottom: isMobile ? "25%" : "30%",
+            transform: isMobile ? "translateX(-50%)" : "none",
           }}
         />
       </Container>
     </>
   );
 }
+
 export default MeetMeAtOurSpot;
