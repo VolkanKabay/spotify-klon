@@ -2,10 +2,33 @@ import { Box, Container, Typography } from "@mui/material";
 import { Image } from "mui-image";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import coverImage from "/images/sweater-weather-cover.jpg";
-function SongInfo() {
+import coverImage from "/images/ANXIETY.jpg";
+import backgroundImage from "/images/ANXIETY.jpg";
+import { useEffect, useState } from "react";
+
+function MeetMeAtOurSpot() {
+  const [opacity, setOpacity] = useState(0.1);
+
+  useEffect(() => {
+    setOpacity(1);
+  }, []);
+
+  const containerStyle: React.CSSProperties = {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),url(${backgroundImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    width: "100%",
+    height: "100%",
+    position: "fixed",
+    left: 0,
+    top: 0,
+    opacity: opacity,
+    transition: "opacity 1s ease-in-out",
+  };
+
   return (
     <>
+      <div style={containerStyle} />
       <Container
         sx={{
           display: "flex",
@@ -40,10 +63,10 @@ function SongInfo() {
           }}
         >
           <Typography fontSize={50} fontWeight={700}>
-            Sweater Weather
+            Meet Me At Our Spot
           </Typography>
           <Typography fontSize={24} fontWeight={600} color={"darkgray"}>
-            The Neighbourhood
+            THE ANXIETY
           </Typography>
         </Box>
         <Image
@@ -62,4 +85,4 @@ function SongInfo() {
     </>
   );
 }
-export default SongInfo;
+export default MeetMeAtOurSpot;

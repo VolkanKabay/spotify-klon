@@ -1,26 +1,20 @@
+import { useState } from "react";
 import "./App.css";
-
 import Playbar from "./Playbar";
-import SongInfo from "./SongInfo";
-import backgroundImage from "/images/theneighbourhood.jpg";
+import SweaterWeather from "./SweaterWeather";
+import MeetMeAtOurSpot from "./MeetMeAtOurSpot";
 
 function App() {
-  const containerStyle: React.CSSProperties = {
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),url(${backgroundImage})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    width: "100%",
-    height: "100%",
-    position: "fixed",
-    left: 0,
-    top: 0,
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+
+  const handleNextSong = () => {
+    setCurrentSongIndex((prevIndex) => (prevIndex + 1) % 2); // Assuming 2 songs for illustration
   };
 
   return (
     <>
-      <div style={containerStyle} />
-      <SongInfo />
-      <Playbar />
+      {currentSongIndex === 0 ? <SweaterWeather /> : <MeetMeAtOurSpot />}
+      <Playbar onNextSong={handleNextSong} />
     </>
   );
 }

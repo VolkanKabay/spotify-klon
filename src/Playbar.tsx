@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, ChangeEvent } from "react";
+import React, { useState, useEffect, useRef, ChangeEvent } from "react";
 import {
   Box,
   Container,
@@ -19,9 +19,12 @@ import {
   VolumeDownOutlined,
 } from "@mui/icons-material";
 
-import sweaterWeatherSong from "/images/sweater-weather.webm";
+import sweaterWeatherSong from "/images/sweater-weather.mp3";
+import meetMeAtOurSpotSong from "/images/meetmeatourspot.mp3";
 
-function Playbar() {
+const songs = [sweaterWeatherSong, meetMeAtOurSpotSong];
+
+function Playbar({ onNextSong }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isMouseMoving, setIsMouseMoving] = useState(true);
@@ -31,8 +34,10 @@ function Playbar() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isDurationAvailable, setIsDurationAvailable] = useState(false);
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
 
-  const audioRef = useRef(new Audio(sweaterWeatherSong));
+  const audioRef = useRef(new Audio(songs[currentSongIndex]));
+
   const handleVolumeSliderChange = (
     _event: Event,
     value: number | number[]
@@ -40,6 +45,7 @@ function Playbar() {
     // Call your original handleVolumeChange function here
     handleVolumeChange({} as ChangeEvent<HTMLInputElement>, value);
   };
+
   const handlePausePlayToggle = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -48,6 +54,15 @@ function Playbar() {
     }
     setIsPlaying((prevIsPlaying) => !prevIsPlaying);
   };
+
+  const handleSkipNext = () => {
+    onNextSong();
+    const nextSongIndex = (currentSongIndex + 1) % songs.length;
+    setCurrentSongIndex(nextSongIndex);
+    audioRef.current.src = songs[nextSongIndex];
+    audioRef.current.play();
+  };
+
   const handleSeek = (event: React.MouseEvent<object>) => {
     const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
     const clickX = event.clientX - rect.left;
@@ -265,6 +280,7 @@ function Playbar() {
                     fill: "white",
                   },
                 }}
+                onClick={handleSkipNext}
               />
               <Replay
                 sx={{
