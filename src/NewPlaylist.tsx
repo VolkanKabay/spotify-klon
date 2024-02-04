@@ -18,7 +18,11 @@ export function NewPlaylist() {
         },
       }}
     >
-      <Image style={{ width: "55px" }} src={`/images/playlist${i}.jpg`} />
+      <Image
+        easing="0"
+        style={{ width: "55px" }}
+        src={`/images/playlist${i}.jpg`}
+      />
       <Box
         sx={{
           paddingRight: "20px",

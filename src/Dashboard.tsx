@@ -12,6 +12,7 @@ import {
 import { HomeOutlined, Menu, SearchOutlined } from "@mui/icons-material";
 import { NewPlaylist } from "./NewPlaylist";
 import { NewFavSongs } from "./NewFavSongs";
+import { Link } from "react-router-dom";
 
 const theme = createTheme({
   typography: {
@@ -75,14 +76,19 @@ function Dashboard() {
               >
                 <HomeOutlined fontSize="large" sx={{ cursor: "pointer" }} />
                 <ListItem>
-                  <ListItemText
-                    primary="Start"
-                    sx={{ cursor: "pointer" }}
-                    primaryTypographyProps={{
-                      fontSize: "20px",
-                      fontWeight: "medium",
-                    }}
-                  />
+                  <Link
+                    to="/"
+                    style={{ textDecoration: "none", color: "lightgrey" }}
+                  >
+                    <ListItemText
+                      primary="Start"
+                      sx={{ cursor: "pointer" }}
+                      primaryTypographyProps={{
+                        fontSize: "20px",
+                        fontWeight: "medium",
+                      }}
+                    />
+                  </Link>
                 </ListItem>
               </Box>
               <Box
