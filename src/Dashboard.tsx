@@ -78,20 +78,20 @@ function Dashboard() {
                 height: "120px",
               }}
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  margin: "3px 0px 0px 20px",
-                }}
+              <Link
+                to="/"
+                style={{ textDecoration: "none", color: "lightgrey" }}
               >
-                <HomeOutlined fontSize="large" sx={{ cursor: "pointer" }} />
-                <ListItem>
-                  <Link
-                    to="/"
-                    style={{ textDecoration: "none", color: "lightgrey" }}
-                  >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "3px 0px 0px 20px",
+                  }}
+                >
+                  <HomeOutlined fontSize="large" sx={{ cursor: "pointer" }} />
+                  <ListItem>
                     <ListItemText
                       primary="Start"
                       sx={{ cursor: "pointer" }}
@@ -100,29 +100,31 @@ function Dashboard() {
                         fontWeight: "medium",
                       }}
                     />
-                  </Link>
-                </ListItem>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  margin: "10px 10px 0px 20px",
-                }}
-              >
-                <SearchOutlined fontSize="large" sx={{ cursor: "pointer" }} />
-                <ListItem>
-                  <ListItemText
-                    sx={{ cursor: "pointer" }}
-                    primary="Suchen"
-                    primaryTypographyProps={{
-                      fontSize: "20px",
-                      fontWeight: "medium",
-                    }}
-                  />
-                </ListItem>
-              </Box>
+                  </ListItem>
+                </Box>
+              </Link>
+              <Link style={{ color: "lightgrey" }} to={"/search"}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "10px 10px 0px 20px",
+                  }}
+                >
+                  <SearchOutlined fontSize="large" sx={{ cursor: "pointer" }} />
+                  <ListItem>
+                    <ListItemText
+                      sx={{ cursor: "pointer" }}
+                      primary="Suchen"
+                      primaryTypographyProps={{
+                        fontSize: "20px",
+                        fontWeight: "medium",
+                      }}
+                    />
+                  </ListItem>
+                </Box>
+              </Link>
             </Box>
             <Box
               sx={{

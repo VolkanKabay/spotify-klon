@@ -5,6 +5,7 @@ import SweaterWeather from "./SweaterWeather";
 import MeetMeAtOurSpot from "./MeetMeAtOurSpot";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from "./Dashboard";
+import { Search } from "./Search";
 
 function App() {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
@@ -21,7 +22,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
-
+        <Route path="/search" element={<Search />} />
         <Route
           path="/"
           element={
