@@ -8,8 +8,8 @@ import {
 import { Image } from "mui-image";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import coverImage from "../public/images/sweater-weather-cover.jpg";
-import backgroundImage from "../public/images/theneighbourhood.jpg";
+import coverImage from "/images/sweater-weather-cover.jpg";
+import backgroundImage from "/images/theneighbourhood.jpg";
 import { useEffect, useState } from "react";
 
 function SweaterWeather() {
@@ -68,9 +68,9 @@ function SweaterWeather() {
             textAlign: "start",
             display: "flex",
             flexDirection: "column",
-            gap: isMobile ? "5px" : "15px",
+            gap: "5px",
             position: "fixed",
-            left: isMobile ? "55%" : "17%",
+            left: isMobile ? "53%" : "17%",
             bottom: isMobile ? "25%" : "30%",
             transform: isMobile ? "translateX(-50%)" : "none",
           }}

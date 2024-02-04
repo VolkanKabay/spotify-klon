@@ -19,8 +19,9 @@ import {
   VolumeDownOutlined,
 } from "@mui/icons-material";
 
-import sweaterWeatherSong from "../public/images/sweater-weather.mp3";
-import meetMeAtOurSpotSong from "../public/images/meetmeatourspot.mp3";
+import sweaterWeatherSong from "/images/sweater-weather.mp3";
+import meetMeAtOurSpotSong from "/images/meetmeatourspot.mp3";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const songs = [sweaterWeatherSong, meetMeAtOurSpotSong];
 
@@ -43,6 +44,7 @@ function Playbar({
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
 
   const audioRef = useRef(new Audio(songs[currentSongIndex]));
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   const handleVolumeSliderChange = (
     _event: Event,
@@ -217,12 +219,10 @@ function Playbar({
                         backgroundColor: "lightgreen",
                       },
                     },
+                    width: "85%",
+                    bottom: isMobile ? "20%" : "17%",
                     position: "fixed",
-                    bottom: "17%",
-                    left: "50%",
                     transform: "translateX(-50%)",
-                    width: "87%",
-                    cursor: "pointer",
                   }}
                   onClick={handleSeek}
                 />
@@ -239,19 +239,19 @@ function Playbar({
                 width: "30px",
                 position: "fixed",
                 left: "4%",
-                bottom: "7%",
+                bottom: isMobile ? "11.4%" : "7%",
                 fill: "lightgreen",
               }}
             />
             <Container
               sx={{
                 position: "fixed",
-                bottom: "7%",
+                bottom: isMobile ? "10%" : "7%",
                 left: "50%",
                 transform: "translateX(-50%)",
                 display: "flex",
                 justifyContent: "center",
-                gap: "20px",
+                gap: isMobile ? "10px" : "20px",
               }}
             >
               <Shuffle
@@ -281,7 +281,7 @@ function Playbar({
                   borderRadius: "50%",
                   border: "1px solid white",
                   height: "auto",
-                  width: "65px",
+                  width: isMobile ? "45px" : "65px",
                   display: "flex",
                   backgroundColor: "white",
                   transition: "transform 0.3s",
@@ -292,10 +292,20 @@ function Playbar({
                 onClick={handlePausePlayToggle}
               >
                 {isPlaying ? (
-                  <Pause sx={{ height: "auto", width: "65px", fill: "#000" }} />
+                  <Pause
+                    sx={{
+                      height: "auto",
+                      width: isMobile ? "45px" : "65px",
+                      fill: "#000",
+                    }}
+                  />
                 ) : (
                   <PlayArrow
-                    sx={{ height: "auto", width: "65px", fill: "#000" }}
+                    sx={{
+                      height: "auto",
+                      width: isMobile ? "45px" : "65px",
+                      fill: "#000",
+                    }}
                   />
                 )}
               </Box>
@@ -322,58 +332,61 @@ function Playbar({
                 onClick={handleReplayClick}
               />
             </Container>
-            {audioRef.current.volume === 0 ? (
-              <VolumeOffOutlined
-                fontSize="large"
-                sx={{
-                  color: "white",
-                  marginRight: "10px",
-                  right: "12%",
-                  bottom: "6.75%",
-                  position: "fixed",
-                }}
-              />
-            ) : (
-              <VolumeDownOutlined
-                fontSize="large"
-                onClick={muteSong}
-                sx={{
-                  color: "white",
-                  marginRight: "10px",
-                  right: "12%",
-                  bottom: "6.75%",
-                  position: "fixed",
-                }}
-              />
+            {!isMobile && (
+              <>
+                {audioRef.current.volume === 0 ? (
+                  <VolumeOffOutlined
+                    fontSize="large"
+                    sx={{
+                      color: "white",
+                      marginRight: "10px",
+                      right: "12%",
+                      bottom: "6.75%",
+                      position: "fixed",
+                    }}
+                  />
+                ) : (
+                  <VolumeDownOutlined
+                    fontSize="large"
+                    onClick={muteSong}
+                    sx={{
+                      color: "white",
+                      marginRight: "10px",
+                      right: "12%",
+                      bottom: "6.75%",
+                      position: "fixed",
+                    }}
+                  />
+                )}
+                <Slider
+                  value={audioRef.current.volume * 100}
+                  onChange={handleVolumeSliderChange}
+                  sx={{
+                    color: "white",
+                    width: "100px",
+                    marginRight: "10px",
+                    right: "6%",
+                    bottom: "7%",
+                    position: "fixed",
+                    pointerEvents: isMouseMoving ? "auto" : "none",
+                  }}
+                />
+                <CloseFullscreen
+                  sx={{
+                    height: "auto",
+                    width: "30px",
+                    right: "4%",
+                    bottom: "7%",
+                    position: "fixed",
+                    fill: isFullscreen ? "white" : "grey",
+                    ":hover": {
+                      fill: "white",
+                    },
+                  }}
+                  onClick={handleFullscreenToggle}
+                />
+              </>
             )}
-            <Slider
-              value={audioRef.current.volume * 100}
-              onChange={handleVolumeSliderChange}
-              sx={{
-                color: "white",
-                width: "100px",
-                marginRight: "10px",
-                right: "6%",
-                bottom: "7%",
-                position: "fixed",
-                pointerEvents: isMouseMoving ? "auto" : "none",
-              }}
-            />
-
-            <CloseFullscreen
-              sx={{
-                height: "auto",
-                width: "30px",
-                right: "4%",
-                bottom: "7%",
-                position: "fixed",
-                fill: isFullscreen ? "white" : "grey",
-                ":hover": {
-                  fill: "white",
-                },
-              }}
-              onClick={handleFullscreenToggle}
-            />
           </>
         )}
       </div>

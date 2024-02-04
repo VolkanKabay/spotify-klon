@@ -8,7 +8,7 @@ import {
 import { Image } from "mui-image";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import coverImage from "../public/images/ANXIETY.jpg";
+import coverImage from "/images/ANXIETY.jpg";
 import { useEffect, useState } from "react";
 
 function MeetMeAtOurSpot() {
@@ -67,7 +67,7 @@ function MeetMeAtOurSpot() {
             textAlign: "start",
             display: "flex",
             flexDirection: "column",
-            gap: isMobile ? "5px" : "15px",
+            gap: "5px",
             position: "fixed",
             left: isMobile ? "55%" : "17%",
             bottom: isMobile ? "25%" : "30%",
