@@ -2,8 +2,6 @@ import { Box, Typography } from "@mui/material";
 import Image from "mui-image";
 
 export function NewFavSongs() {
-  const i = Math.floor(Math.random() * 5) + 1;
-
   return (
     <Box
       sx={{
@@ -19,8 +17,8 @@ export function NewFavSongs() {
     >
       <Image
         easing="0"
-        style={{ width: "55px" }}
-        src={`/images/playlist${i}.jpg`}
+        style={{ width: "55px", padding: "10px" }}
+        src={`/images/spotifylikedsongs.jpg`}
       />
       <Box
         sx={{

@@ -42,6 +42,7 @@ function MusicAppBar({
   const [duration, setDuration] = useState(0);
   const [isDurationAvailable, setIsDurationAvailable] = useState(false);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const audioRef = useRef(new Audio(songs[currentSongIndex]));
   const isMobile = useMediaQuery("(max-width:600px)");
@@ -62,6 +63,7 @@ function MusicAppBar({
     setIsPlaying((prevIsPlaying) => !prevIsPlaying);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSkipNext = () => {
     console.log("Skip Next");
     onNextSong();
@@ -112,6 +114,9 @@ function MusicAppBar({
   const muteSong = () => {
     audioRef.current.volume = 0;
   };
+  const handleFavoriteClick = () => {
+    setIsFavorite((prevIsFavorite) => !prevIsFavorite);
+  };
 
   useEffect(() => {
     audioRef.current.volume = 0.15;
@@ -148,7 +153,7 @@ function MusicAppBar({
       );
       currentAudioRef.removeEventListener("ended", handleSongEnd);
     };
-  }, [isReplayActive]);
+  }, [handleSkipNext, isReplayActive]);
   const songsInfo = [
     {
       image: "/images/sweater-weather-cover.jpg",
@@ -210,7 +215,16 @@ function MusicAppBar({
           </Box>
           <Favorite
             fontSize="small"
-            sx={{ position: "fixed", bottom: "4%", left: "14%" }}
+            sx={{
+              position: "fixed",
+              bottom: "4%",
+              left: "14%",
+              fill: isFavorite ? "lightgreen" : "white",
+              ":hover": {
+                fill: "lightgreen",
+              },
+            }}
+            onClick={handleFavoriteClick}
           />
           {formatTime(currentTime)}
         </Typography>
@@ -228,7 +242,7 @@ function MusicAppBar({
                   },
                 },
                 width: "35%",
-                bottom: isMobile ? "3%" : "3%",
+                bottom: "3%",
                 position: "fixed",
                 transform: "translateX(40%)",
               }}
