@@ -65,7 +65,6 @@ function MusicAppBar({
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSkipNext = () => {
-    console.log("Skip Next");
     onNextSong();
     const nextSongIndex = (currentSongIndex + 1) % songs.length;
     setCurrentSongIndex(nextSongIndex);
@@ -74,7 +73,6 @@ function MusicAppBar({
   };
 
   const handlePrevSong = () => {
-    console.log("Previous Song");
     onPrevSong();
     const prevSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
     setCurrentSongIndex(prevSongIndex);

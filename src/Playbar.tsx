@@ -63,18 +63,23 @@ function Playbar({
   };
 
   const handleSkipNext = () => {
-    onNextSong();
     const nextSongIndex = (currentSongIndex + 1) % songs.length;
     setCurrentSongIndex(nextSongIndex);
     audioRef.current.src = songs[nextSongIndex];
     audioRef.current.play();
+    if (onNextSong) {
+      onNextSong();
+    }
   };
+
   const handlePrevSong = () => {
-    onPrevSong();
-    const prevSongIndex = (currentSongIndex - 1) % songs.length;
+    const prevSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
     setCurrentSongIndex(prevSongIndex);
     audioRef.current.src = songs[prevSongIndex];
     audioRef.current.play();
+    if (onPrevSong) {
+      onPrevSong();
+    }
   };
 
   const handleSeek = (event: React.MouseEvent<object>) => {
@@ -174,7 +179,7 @@ function Playbar({
       );
       currentAudioRef.removeEventListener("ended", handleSongEnd);
     };
-  }, [isReplayActive]);
+  }, [currentSongIndex, isReplayActive]);
 
   return (
     <Container>
