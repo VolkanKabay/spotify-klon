@@ -67,6 +67,7 @@ function Playbar({
     setCurrentSongIndex(nextSongIndex);
     audioRef.current.src = songs[nextSongIndex];
     audioRef.current.play();
+    setIsPlaying(true);
     if (onNextSong) {
       onNextSong();
     }
@@ -77,6 +78,8 @@ function Playbar({
     setCurrentSongIndex(prevSongIndex);
     audioRef.current.src = songs[prevSongIndex];
     audioRef.current.play();
+    setIsPlaying(true);
+
     if (onPrevSong) {
       onPrevSong();
     }
