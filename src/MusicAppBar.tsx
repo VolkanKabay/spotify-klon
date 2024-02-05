@@ -70,6 +70,7 @@ function MusicAppBar({
     setCurrentSongIndex(nextSongIndex);
     audioRef.current.src = songs[nextSongIndex];
     audioRef.current.play();
+    setIsPlaying(true);
   };
 
   const handlePrevSong = () => {
@@ -78,6 +79,7 @@ function MusicAppBar({
     setCurrentSongIndex(prevSongIndex);
     audioRef.current.src = songs[prevSongIndex];
     audioRef.current.play();
+    setIsPlaying(true);
   };
 
   const handleSeek = (event: React.MouseEvent<object>) => {
