@@ -1,18 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 
-export const StateContext = createContext();
+export const StateContext = createContext<any>(undefined);
 
-export const StateProvider = ({
-  children,
-  initialstate,
-  reducer,
-}: {
+export const StateProvider: React.FC<{
   children: React.ReactNode;
-  initialstate: any;
+  initialState: any;
   reducer: any;
-}) => (
-  <StateContext.Provider value={useReducer(reducer, initialstate)}>
+}> = ({ children, initialState, reducer }) => (
+  <StateContext.Provider value={useReducer(reducer, initialState)}>
     {children}
   </StateContext.Provider>
 );
