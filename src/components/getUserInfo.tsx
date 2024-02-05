@@ -23,7 +23,6 @@ const useUserInfoEffect = (token: unknown) => {
         };
 
         dispatch({ type: reducerCases.SET_USER, userInfo: userInfoData });
-        console.log(userInfoData, "after dispatching user info");
       } catch (error) {
         console.error("Error fetching user info:", error);
       }
