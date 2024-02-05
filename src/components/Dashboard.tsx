@@ -139,7 +139,7 @@ function Dashboard() {
           >
             <Tooltip title={userInfo?.userName} placement="bottom">
               <Avatar
-                src="/images/ANXIETY.jpg"
+                src={userInfo.userImage}
                 sx={{
                   height: "30px",
                   width: "30px",

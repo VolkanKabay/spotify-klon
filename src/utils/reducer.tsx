@@ -4,7 +4,7 @@ import { reducerCases } from "./Constants";
 export const initialState = {
   token: null,
   playlists: [],
-  userInfo: { userId: null, userName: null },
+  userInfo: { userId: null, userName: null, userImage: null },
 };
 
 const reducer = (

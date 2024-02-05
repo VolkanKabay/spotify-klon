@@ -19,6 +19,7 @@ const useUserInfoEffect = (token: unknown) => {
         const userInfoData = {
           userId: data.id,
           userName: data.display_name,
+          userImage: data.images[0].url,
         };
 
         dispatch({ type: reducerCases.SET_USER, userInfo: userInfoData });

@@ -22,11 +22,9 @@ function Login() {
   };
 
   return (
-    <>
-      <Button onClick={handleClick} variant="contained" color="primary">
-        Login with Spotify
-      </Button>
-    </>
+    <Button onClick={handleClick} variant="contained" color="primary">
+      Login with Spotify
+    </Button>
   );
 }
 
