@@ -25,6 +25,7 @@ import sweaterWeatherSong from "/images/sweater-weather.mp3";
 import meetMeAtOurSpotSong from "/images/meetmeatourspot.mp3";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Image from "mui-image";
+import { useStateProvider } from "../utils/StateProvider";
 
 const songs = [sweaterWeatherSong, meetMeAtOurSpotSong];
 
@@ -46,7 +47,8 @@ function MusicAppBar({
 
   const audioRef = useRef(new Audio(songs[currentSongIndex]));
   const isMobile = useMediaQuery("(max-width:600px)");
-
+  const isWQHD = useMediaQuery("(min-width:2560px)");
+  const isFHD = useMediaQuery("(min-width:1920px)");
   const handleVolumeSliderChange = (
     _event: Event,
     value: number | number[]
@@ -265,10 +267,22 @@ function MusicAppBar({
                     backgroundColor: "lightgreen",
                   },
                 },
-                width: isMobile ? "52%" : "35%",
+                width: isWQHD
+                  ? "52%"
+                  : isMobile
+                  ? "52%"
+                  : isFHD
+                  ? "37%"
+                  : "37%",
                 bottom: "3%",
                 position: "fixed",
-                transform: "translateX(40%)",
+                transform: isWQHD
+                  ? "translateX(40%)"
+                  : isMobile
+                  ? "translateX(24%)"
+                  : isFHD
+                  ? "translateX(14%)"
+                  : "translateX(35%)",
               }}
               onClick={handleSeek}
             />

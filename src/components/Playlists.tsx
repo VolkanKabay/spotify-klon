@@ -94,7 +94,7 @@ export default function Playlists() {
 }
 
 const Container = styled.div`
-  height: 95%;
+  height: 100%;
   overflow: hidden;
   ul {
     list-style: none;
@@ -103,6 +103,7 @@ const Container = styled.div`
     height: 55vh;
     max-height: 100%;
     overflow: auto;
+    padding: 0 8px;
   }
 `;
 

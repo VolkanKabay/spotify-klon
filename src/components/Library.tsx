@@ -9,14 +9,14 @@ export function Library() {
         background: "#171717",
         width: "310px",
         margin: "20px auto 0px auto",
-        height: "120px",
+        height: "220px",
       }}
     >
       <Paper
         sx={{
           backgroundColor: "#171717",
           borderRadius: "10px",
-          height: "670px",
+          height: "850px",
         }}
       >
         <Box
