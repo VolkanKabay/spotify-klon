@@ -113,6 +113,9 @@ const PlaylistDetails = styled.div`
   width: 100%;
   text-align: left;
   cursor: pointer;
+  :hover {
+    background-color: #282828;
+  }
 `;
 
 const PlaylistName = styled.div`
