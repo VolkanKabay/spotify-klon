@@ -1,1 +1,1 @@
-This project is a web application built using React, JavaScript, HTML, and CSS. It leverages an API to fetch and display data dynamically. The primary goal of the project is to [briefly describe the main purpose or functionality of your application].
+This project is a web application built using React, JavaScript, HTML, and CSS. It leverages an API to fetch and display data dynamically. The primary goal of the project is to understand the concepts of severous techniques including api usage, redux etc.
