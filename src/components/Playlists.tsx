@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { useStateProvider } from "./utils/StateProvider";
+import { useStateProvider } from "../utils/StateProvider";
 import axios from "axios";
-import { reducerCases } from "./utils/Constants";
+import { reducerCases } from "../utils/Constants";
 import styled from "@emotion/styled";
 import { Typography } from "@mui/material";
 

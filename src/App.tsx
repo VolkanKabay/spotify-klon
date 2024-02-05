@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import Playbar from "./Playbar";
-import SweaterWeather from "./SweaterWeather";
-import MeetMeAtOurSpot from "./MeetMeAtOurSpot";
+import Playbar from "./components/Playbar";
+import SweaterWeather from "./components/SweaterWeather";
+import MeetMeAtOurSpot from "./components/MeetMeAtOurSpot";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Dashboard from "./Dashboard";
-import SearchDashBoard from "./SearchDashboard";
-import Login from "./Login";
+import Dashboard from "./components/Dashboard";
+import SearchDashBoard from "./components/SearchDashboard";
+import Login from "./components/Login";
 import { useStateProvider } from "./utils/StateProvider";
 import { reducerCases } from "./utils/Constants";
 
