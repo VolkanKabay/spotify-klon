@@ -1,7 +1,6 @@
 import {
   Avatar,
   Box,
-  Chip,
   Drawer,
   List,
   ListItem,
@@ -14,14 +13,13 @@ import {
   ArrowLeft,
   ArrowRight,
   HomeOutlined,
-  Menu,
   Notifications,
   SearchOutlined,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import MusicAppBar from "./MusicAppBar";
 import { useState } from "react";
-import Playlists from "./Playlists";
+import { Library } from "./Library";
 
 const theme = createTheme({
   typography: {
@@ -133,45 +131,7 @@ function Dashboard() {
                 </Box>
               </Link>
             </Box>
-            <Box
-              sx={{
-                background: "#171717",
-                width: "310px",
-                margin: "20px auto 0px auto",
-                height: "120px",
-              }}
-            >
-              <Paper
-                sx={{
-                  backgroundColor: "#171717",
-                  borderRadius: "10px",
-                  height: "670px",
-                }}
-              >
-                <Box
-                  sx={{
-                    margin: "5px",
-                  }}
-                >
-                  <ListItem>
-                    <Menu fontSize="large" sx={{ cursor: "pointer" }} />
-                    <ListItemText
-                      sx={{ cursor: "pointer" }}
-                      primary="Bibliothek"
-                      primaryTypographyProps={{
-                        fontSize: "20px",
-                        fontWeight: "medium",
-                        marginLeft: "15px",
-                      }}
-                    />
-                  </ListItem>
-                </Box>
-                <Chip label="Playlists" />
-                <Chip label="Künstler" />
-                <Chip label="Alben" />
-                <Playlists />
-              </Paper>
-            </Box>
+            <Library />
           </List>
         </Paper>
       </Drawer>

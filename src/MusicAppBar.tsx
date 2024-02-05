@@ -213,17 +213,34 @@ function MusicAppBar({
                 transform: "none",
               }}
             />
-            <Typography>{songsInfo[currentSongIndex].title}</Typography>
-            <Typography color={"darkgray"} fontSize={"13px"}>
+            <Typography
+              sx={{
+                position: "fixed",
+                bottom: "5%",
+                left: isMobile ? "16%" : "5.45%",
+              }}
+            >
+              {songsInfo[currentSongIndex].title}
+            </Typography>
+            <Typography
+              color={"darkgray"}
+              fontSize={"13px"}
+              sx={{
+                position: "fixed",
+                bottom: "3%",
+                left: isMobile ? "16%" : "5.5%",
+              }}
+            >
               {songsInfo[currentSongIndex].artist}
             </Typography>
           </Box>
+
           <Favorite
             fontSize="small"
             sx={{
               position: "fixed",
-              bottom: "4%",
-              left: "14%",
+              bottom: isMobile ? "6.5%" : "4%",
+              left: isMobile ? "90%" : "14%",
               fill: isFavorite ? "lightgreen" : "white",
               ":hover": {
                 fill: "lightgreen",
@@ -246,7 +263,7 @@ function MusicAppBar({
                     backgroundColor: "lightgreen",
                   },
                 },
-                width: "35%",
+                width: isMobile ? "52%" : "35%",
                 bottom: "3%",
                 position: "fixed",
                 transform: "translateX(40%)",
@@ -255,7 +272,11 @@ function MusicAppBar({
             />
             <Typography
               fontSize="small"
-              sx={{ position: "fixed", right: "29%", bottom: "2%" }}
+              sx={{
+                position: "fixed",
+                right: isMobile ? "13%" : "29%",
+                bottom: "2%",
+              }}
             >
               {formatTime(duration)}
             </Typography>
