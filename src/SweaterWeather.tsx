@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import coverImage from "/images/sweater-weather-cover.jpg";
 import backgroundImage from "/images/theneighbourhood.jpg";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function SweaterWeather() {
   const theme = useTheme();
@@ -47,11 +48,13 @@ function SweaterWeather() {
           left: isMobile ? "2%" : "5%",
         }}
       >
-        <FontAwesomeIcon
-          icon={faSpotify}
-          size={isMobile ? "2x" : "4x"}
-          color="gray"
-        />
+        <Link to="/dashboard">
+          <FontAwesomeIcon
+            icon={faSpotify}
+            size={isMobile ? "2x" : "4x"}
+            color="gray"
+          />
+        </Link>
         <Typography
           fontSize={isMobile ? 12 : 16}
           letterSpacing={3}

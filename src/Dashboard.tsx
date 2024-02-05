@@ -18,11 +18,10 @@ import {
   Notifications,
   SearchOutlined,
 } from "@mui/icons-material";
-import { NewPlaylist } from "./NewPlaylist";
-import { NewFavSongs } from "./NewFavSongs";
 import { Link } from "react-router-dom";
 import MusicAppBar from "./MusicAppBar";
 import { useState } from "react";
+import Playlists from "./Playlists";
 
 const theme = createTheme({
   typography: {
@@ -170,11 +169,7 @@ function Dashboard() {
                 <Chip label="Playlists" />
                 <Chip label="Künstler" />
                 <Chip label="Alben" />
-                <NewFavSongs />
-                <NewPlaylist />
-                <NewPlaylist />
-                <NewPlaylist />
-                <NewPlaylist />
+                <Playlists />
               </Paper>
             </Box>
           </List>
@@ -246,26 +241,36 @@ function Dashboard() {
             top: "3.3%",
           }}
         >
-          <Notifications
-            fontSize="medium"
-            sx={{
-              cursor: "pointer",
-              background: "#111",
-              borderRadius: "50%",
-              padding: "4px",
-              top: "3.2%",
-              right: "5.5%",
-              position: "fixed",
-            }}
-          />
-          <Avatar
-            src="/images/ANXIETY.jpg"
-            sx={{
-              height: "30px",
-              width: "30px",
-              cursor: "pointer",
-            }}
-          />
+          <Link
+            to="/notifications"
+            style={{ textDecoration: "none", color: "lightgrey" }}
+          >
+            <Notifications
+              fontSize="medium"
+              sx={{
+                cursor: "pointer",
+                background: "#111",
+                borderRadius: "50%",
+                padding: "4px",
+                top: "3.2%",
+                right: "5.5%",
+                position: "fixed",
+              }}
+            />
+          </Link>
+          <Link
+            to="/profile"
+            style={{ textDecoration: "none", color: "lightgrey" }}
+          >
+            <Avatar
+              src="/images/ANXIETY.jpg"
+              sx={{
+                height: "30px",
+                width: "30px",
+                cursor: "pointer",
+              }}
+            />
+          </Link>
         </Box>
       </Paper>
     </ThemeProvider>

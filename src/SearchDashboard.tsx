@@ -24,6 +24,7 @@ import { NewFavSongs } from "./NewFavSongs";
 import { Link } from "react-router-dom";
 import MusicAppBar from "./MusicAppBar";
 import { useState } from "react";
+import Playlists from "./Playlists";
 
 const theme = createTheme({
   typography: {
@@ -171,11 +172,7 @@ function SearchDashBoard() {
                 <Chip label="Playlists" />
                 <Chip label="Künstler" />
                 <Chip label="Alben" />
-                <NewFavSongs />
-                <NewPlaylist />
-                <NewPlaylist />
-                <NewPlaylist />
-                <NewPlaylist />
+                <Playlists />
               </Paper>
             </Box>
           </List>

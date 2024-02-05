@@ -10,6 +10,7 @@ import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import coverImage from "/images/ANXIETY.jpg";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function MeetMeAtOurSpot() {
   const theme = useTheme();
@@ -46,11 +47,13 @@ function MeetMeAtOurSpot() {
           left: isMobile ? "2%" : "5%",
         }}
       >
-        <FontAwesomeIcon
-          icon={faSpotify}
-          size={isMobile ? "2x" : "4x"}
-          color="gray"
-        />
+        <Link to="/dashboard">
+          <FontAwesomeIcon
+            icon={faSpotify}
+            size={isMobile ? "2x" : "4x"}
+            color="gray"
+          />
+        </Link>
         <Typography
           fontSize={isMobile ? 12 : 16}
           letterSpacing={3}

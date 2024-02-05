@@ -118,7 +118,11 @@ function MusicAppBar({
 
   useEffect(() => {
     audioRef.current.volume = 0.15;
-
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code === "Space") {
+        handlePausePlayToggle();
+      }
+    };
     const handleTimeUpdate = () => {
       setCurrentTime(audioRef.current.currentTime);
     };
@@ -127,6 +131,7 @@ function MusicAppBar({
       setDuration(audioRef.current.duration);
       setIsDurationAvailable(true);
     };
+    document.addEventListener("keydown", handleKeyDown);
 
     const handleSongEnd = () => {
       if (isReplayActive) {
@@ -144,6 +149,8 @@ function MusicAppBar({
     const currentAudioRef = audioRef.current;
 
     return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+
       currentAudioRef.removeEventListener("timeupdate", handleTimeUpdate);
       currentAudioRef.removeEventListener(
         "loadedmetadata",
@@ -151,7 +158,7 @@ function MusicAppBar({
       );
       currentAudioRef.removeEventListener("ended", handleSongEnd);
     };
-  }, [handleSkipNext, isReplayActive]);
+  }, [handleSkipNext, isReplayActive, handlePausePlayToggle]);
   const songsInfo = [
     {
       image: "/images/sweater-weather-cover.jpg",
@@ -383,7 +390,7 @@ function MusicAppBar({
             />
           </>
         )}
-        <Link to="/">
+        <Link to="/songs">
           <CloseFullscreen
             sx={{
               height: "auto",
