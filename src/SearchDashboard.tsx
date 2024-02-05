@@ -19,8 +19,6 @@ import {
   Notifications,
   SearchOutlined,
 } from "@mui/icons-material";
-import { NewPlaylist } from "./NewPlaylist";
-import { NewFavSongs } from "./NewFavSongs";
 import { Link } from "react-router-dom";
 import MusicAppBar from "./MusicAppBar";
 import { useState } from "react";

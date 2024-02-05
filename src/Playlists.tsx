@@ -3,6 +3,7 @@ import { useStateProvider } from "./utils/StateProvider";
 import axios from "axios";
 import { reducerCases } from "./utils/Constants";
 import styled from "@emotion/styled";
+import { Typography } from "@mui/material";
 
 interface AlbumCoverProps {
   imageUrl?: string;
@@ -79,8 +80,8 @@ export default function Playlists() {
                   <Name>{name}</Name>
 
                   <DetailsRow>
-                    <p>{type}</p>
-                    <p>{owner.display_name}</p>
+                    <Typography>{type}</Typography>
+                    <Typography>{owner.display_name}</Typography>
                   </DetailsRow>
                 </PlaylistName>
               </PlaylistDetails>
@@ -131,7 +132,6 @@ const DetailsRow = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-top: -10px;
 `;
 const AlbumCover = styled.div<AlbumCoverProps>`
   width: 70px;
@@ -139,6 +139,8 @@ const AlbumCover = styled.div<AlbumCoverProps>`
   background-size: cover;
   background-position: center;
   border-radius: 8px;
+  margin-top: 3px;
+  margin-bottom: 3px;
   background-image: ${(props) =>
     props.imageUrl ? `url(${props.imageUrl})` : "none"};
 `;

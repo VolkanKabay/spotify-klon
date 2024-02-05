@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "ES5", "ES6" ],
     "composite": true,
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true
+
   },
   "include": ["vite.config.ts"]
 }
