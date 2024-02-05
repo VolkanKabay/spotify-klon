@@ -25,8 +25,6 @@ import sweaterWeatherSong from "/images/sweater-weather.mp3";
 import meetMeAtOurSpotSong from "/images/meetmeatourspot.mp3";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Image from "mui-image";
-import { useStateProvider } from "../utils/StateProvider";
-
 const songs = [sweaterWeatherSong, meetMeAtOurSpotSong];
 
 function MusicAppBar({
