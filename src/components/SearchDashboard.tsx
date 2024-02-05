@@ -112,16 +112,13 @@ function SearchDashBoard() {
           </Box>
           <TextField
             type="search"
-            label="Was möchtest du hören?"
-            InputLabelProps={{
-              style: { color: "grey", marginLeft: "30px", fontSize: "16px" },
-              shrink: false,
-            }}
+            placeholder="Was möchtest du hören?"
             InputProps={{
               sx: {
                 borderRadius: "30px",
                 backgroundColor: "#232324",
                 width: "400px",
+                color: "lightgrey",
               },
               startAdornment: (
                 <SearchOutlined
