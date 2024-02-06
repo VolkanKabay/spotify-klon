@@ -14,21 +14,6 @@ export function NavigationBar() {
         sx={{
           position: "fixed",
           top: 0,
-          left: "20%",
-          width: "100%",
-          zIndex: 1,
-          display: "flex",
-          flexDirection: "row",
-          padding: "12px",
-        }}
-      >
-        <ArrowLeft fontSize="large" sx={{ cursor: "pointer" }} />
-        <ArrowRight fontSize="large" sx={{ cursor: "pointer" }} />
-      </Box>
-      <Box
-        sx={{
-          position: "fixed",
-          top: 0,
           left: "90%",
           gap: "10px",
           width: "100%",
