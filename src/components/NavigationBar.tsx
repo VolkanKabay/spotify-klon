@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Notifications } from "@mui/icons-material";
+import { Notifications } from "@mui/icons-material";
 import { Tooltip, Avatar } from "@mui/material";
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
@@ -9,39 +9,37 @@ export function NavigationBar() {
   const [{ token, userInfo }] = useStateProvider();
   useUserInfoEffect(token);
   return (
-    <>
-      <Box
-        sx={{
-          position: "fixed",
-          top: 0,
-          left: "90%",
-          gap: "10px",
-          width: "100%",
-          zIndex: 1,
-          display: "flex",
-          flexDirection: "row",
-          padding: "12px",
-        }}
+    <Box
+      sx={{
+        position: "fixed",
+        top: 0,
+        left: "90%",
+        gap: "10px",
+        width: "100%",
+        zIndex: 1,
+        display: "flex",
+        flexDirection: "row",
+        padding: "12px",
+      }}
+    >
+      <Link
+        to="/notifications"
+        style={{ textDecoration: "none", color: "lightgrey" }}
       >
-        <Link
-          to="/notifications"
-          style={{ textDecoration: "none", color: "lightgrey" }}
-        >
-          <Notifications fontSize="medium" sx={{ cursor: "pointer" }} />
-        </Link>
-        <Link to="/" style={{ textDecoration: "none", color: "lightgrey" }}>
-          <Tooltip title={userInfo?.userName} placement="bottom">
-            <Avatar
-              src={userInfo.userImage}
-              sx={{
-                height: "30px",
-                width: "30px",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-        </Link>
-      </Box>
-    </>
+        <Notifications fontSize="medium" sx={{ cursor: "pointer" }} />
+      </Link>
+      <Link to="/" style={{ textDecoration: "none", color: "lightgrey" }}>
+        <Tooltip title={userInfo?.userName} placement="bottom">
+          <Avatar
+            src={userInfo.userImage}
+            sx={{
+              height: "30px",
+              width: "30px",
+              cursor: "pointer",
+            }}
+          />
+        </Tooltip>
+      </Link>
+    </Box>
   );
 }
