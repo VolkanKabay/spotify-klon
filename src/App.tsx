@@ -11,6 +11,7 @@ import Profile from "./components/Profile";
 
 import { useStateProvider } from "./utils/StateProvider";
 import { reducerCases } from "./utils/Constants";
+import { PlaylistDetails } from "./components/PlayListDetails";
 
 function App() {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
@@ -39,6 +40,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/search" element={<SearchDashBoard />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/playlist" element={<PlaylistDetails />} />
         <Route
           path="/songs"
           element={

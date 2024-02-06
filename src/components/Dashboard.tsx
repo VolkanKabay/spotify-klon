@@ -1,18 +1,12 @@
 import {
-  Avatar,
-  Box,
   Paper,
   ThemeProvider,
-  Tooltip,
   createTheme,
   useMediaQuery,
 } from "@mui/material";
-import { ArrowLeft, ArrowRight, Notifications } from "@mui/icons-material";
-import { Link } from "react-router-dom";
-import useUserInfoEffect from "./getUserInfo";
-import { useStateProvider } from "../utils/StateProvider";
+
 import { Drawer } from "./Drawer";
-import { SongBody } from "./SongBody";
+import { NavigationBar } from "./NavigationBar";
 
 const theme = createTheme({
   typography: {
@@ -49,62 +43,11 @@ const theme = createTheme({
 function Dashboard() {
   const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
   const isMobile = useMediaQuery("(max-width: 1919px)");
-  const [{ token, userInfo }] = useStateProvider();
-  useUserInfoEffect(token);
 
   return (
     <ThemeProvider theme={theme}>
       <Drawer />
-      <Box
-        sx={{
-          position: "fixed",
-          top: 0,
-          left: "20%",
-          width: "100%",
-          zIndex: 1,
-          display: "flex",
-          flexDirection: "row",
-          padding: "12px",
-        }}
-      >
-        <ArrowLeft fontSize="large" sx={{ cursor: "pointer" }} />
-        <ArrowRight fontSize="large" sx={{ cursor: "pointer" }} />
-      </Box>
-      <Box
-        sx={{
-          position: "fixed",
-          top: 0,
-          left: "90%",
-          gap: "10px",
-          width: "100%",
-          zIndex: 1,
-          display: "flex",
-          flexDirection: "row",
-          padding: "12px",
-        }}
-      >
-        <Link
-          to="/notifications"
-          style={{ textDecoration: "none", color: "lightgrey" }}
-        >
-          <Notifications fontSize="medium" sx={{ cursor: "pointer" }} />
-        </Link>
-        <Link
-          to="/profile"
-          style={{ textDecoration: "none", color: "lightgrey" }}
-        >
-          <Tooltip title={userInfo?.userName} placement="bottom">
-            <Avatar
-              src={userInfo.userImage}
-              sx={{
-                height: "30px",
-                width: "30px",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-        </Link>
-      </Box>
+      <NavigationBar />
       <Paper
         sx={{
           position: "fixed",
@@ -115,9 +58,7 @@ function Dashboard() {
           overflowY: "auto",
           height: "100%",
         }}
-      >
-        <SongBody />
-      </Paper>
+      ></Paper>
     </ThemeProvider>
   );
 }
