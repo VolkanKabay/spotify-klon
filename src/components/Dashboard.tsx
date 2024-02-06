@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, Key } from "react";
 import {
-  Container,
   Paper,
   ThemeProvider,
   Typography,
@@ -13,7 +12,6 @@ import { Box } from "@mui/system";
 import { useStateProvider } from "../utils/StateProvider";
 import axios from "axios";
 import { reducerCases } from "../utils/Constants";
-import { Key } from "react";
 
 const theme = createTheme({
   typography: {
