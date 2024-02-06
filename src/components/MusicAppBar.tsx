@@ -165,11 +165,11 @@ function MusicAppBar({
   return (
     <AppBar
       sx={{
-        height: "100px",
+        height: "11vh",
         top: "auto",
         bottom: 0,
         position: "fixed",
-        background: "#111111",
+        background: "#000000",
       }}
     >
       <Container>

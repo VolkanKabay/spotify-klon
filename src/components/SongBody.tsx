@@ -30,7 +30,7 @@ export function SongBody() {
         type: response.data.type,
         owner: response.data.owner,
         image: response.data.images[0].url,
-        tracks: response.data.tracks.items.map(({ track }) => ({
+        tracks: response.data.tracks.items.map(({ track }: { track: any }) => ({
           id: track.id,
           name: track.name,
           artists: track.artists.map((artist: { name: any }) => artist.name),
@@ -107,7 +107,7 @@ export function SongBody() {
           marginTop: "2rem",
         }}
       >
-        {selectedPlaylist?.tracks.map((track) => (
+        {selectedPlaylist?.tracks.map((track: any) => (
           <Box
             key={track.id}
             sx={{

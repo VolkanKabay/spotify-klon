@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from "react";
 import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
@@ -24,7 +25,7 @@ export default function CurrentTrack() {
         const { item } = response.data;
         const newCurrentlyPlaying = {
           name: item.name,
-          artist: item.artists.map((artist: { name: string }) => artist.name),
+          artist: item.artists.map((artist: any) => artist.name),
           id: item.id,
           image: item.album.images[2].url,
         };
@@ -40,6 +41,10 @@ export default function CurrentTrack() {
 
     getCurrentTrack();
   }, [token, dispatch]);
+
+  if (!currentlyPlaying) {
+    return <div>Nothing is being played!</div>;
+  }
 
   return (
     <Container
@@ -61,7 +66,6 @@ export default function CurrentTrack() {
           flexDirection: "column",
           marginLeft: "1rem",
           alignItems: "start",
-          gap: "5px",
         }}
       >
         <Typography fontWeight={800} fontSize={18}>
