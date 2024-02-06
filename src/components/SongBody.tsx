@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useStateProvider } from "../utils/StateProvider";
 import axios from "axios";
 import { reducerCases } from "../utils/Constants";
-import { Box, Button, Container, Divider, Typography } from "@mui/material";
+import { Box, Container, Divider, Typography } from "@mui/material";
 import { PlayArrow } from "@mui/icons-material";
 
 export function SongBody() {
