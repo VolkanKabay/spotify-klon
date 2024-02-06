@@ -8,7 +8,6 @@ import useUserInfoEffect from "./getUserInfo";
 export function NavigationBar() {
   const [{ token, userInfo }] = useStateProvider();
   useUserInfoEffect(token);
-  console.log(userInfo);
   return (
     <>
       <Box
