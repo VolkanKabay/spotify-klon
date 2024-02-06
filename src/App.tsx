@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import SearchDashBoard from "./components/SearchDashboard";
 import Login from "./components/Login";
+import Profile from "./components/Profile";
+
 import { useStateProvider } from "./utils/StateProvider";
 import { reducerCases } from "./utils/Constants";
 
@@ -36,6 +38,7 @@ function App() {
         <Route path="/" element={token ? <Dashboard /> : <Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/search" element={<SearchDashBoard />} />
+        <Route path="/profile" element={<Profile />} />
         <Route
           path="/songs"
           element={

@@ -111,10 +111,9 @@ function Dashboard() {
           left: isMobile ? "15%" : isFHD ? "13%" : "12%",
           right: 0,
           top: 0,
-          background: "linear-gradient(to bottom, #111, #000000)",
+          background: "linear-gradient(to top, #111 50%, #20105E)",
           overflowY: "auto",
           height: "100%",
-          paddingLeft: "5px",
         }}
       >
         <SongBody />

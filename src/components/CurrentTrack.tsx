@@ -22,7 +22,6 @@ export default function CurrentTrack() {
             },
           }
         );
-        console.log(response.data);
         const { item } = response.data;
         const newCurrentlyPlaying = {
           name: item.name,
