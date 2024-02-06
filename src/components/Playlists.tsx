@@ -55,6 +55,7 @@ export default function Playlists() {
     };
     getPlaylistData();
   }, [token, dispatch]);
+
   const handlePlaylistClick = (id: string) => {
     dispatch({
       type: reducerCases.SET_SELECTED_PLAYLIST_ID,
@@ -144,7 +145,7 @@ const DetailsRow = styled.div`
   align-items: center;
   gap: 4px;
 `;
-const AlbumCover = styled.div<AlbumCoverProps>`
+export const AlbumCover = styled.div<AlbumCoverProps>`
   width: 70px;
   height: 55px;
   background-size: cover;

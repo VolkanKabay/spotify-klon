@@ -34,6 +34,7 @@ function Login() {
       "user-read-recently-played",
       "user-read-playback-position",
       "user-top-read",
+      "user-library-read",
     ];
 
     window.location.href = `${apiUrl}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(

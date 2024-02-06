@@ -8,6 +8,7 @@ export const initialState = {
   selectedPlaylistId: null,
   selectedPlaylist: null,
   currentlyPlaying: null,
+  savedTracks: [],
 };
 
 const reducer = (
@@ -20,6 +21,7 @@ const reducer = (
     selectedPlaylist: any;
     selectedPlaylistId: any;
     currentlyPlaying: any;
+    savedTracks: any;
   }
 ) => {
   switch (action.type) {
@@ -57,6 +59,12 @@ const reducer = (
       return {
         ...state,
         currentlyPlaying: action.currentlyPlaying,
+      };
+    }
+    case reducerCases.SET_SAVED_TRACKS: {
+      return {
+        ...state,
+        savedTracks: action.savedTracks,
       };
     }
 
