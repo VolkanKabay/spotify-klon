@@ -55,7 +55,12 @@ export default function Playlists() {
     };
     getPlaylistData();
   }, [token, dispatch]);
-
+  const handlePlaylistClick = (id: string) => {
+    dispatch({
+      type: reducerCases.SET_SELECTED_PLAYLIST_ID,
+      selectedPlaylistId: id,
+    });
+  };
   return (
     <Container>
       <ul>
@@ -73,7 +78,7 @@ export default function Playlists() {
             owner: { display_name: string };
             image: string;
           }) => (
-            <li key={id}>
+            <li key={id} onClick={() => handlePlaylistClick(id)}>
               <PlaylistDetails>
                 <AlbumCover imageUrl={image} />
                 <PlaylistName>
@@ -114,6 +119,8 @@ const PlaylistDetails = styled.div`
   width: 100%;
   text-align: left;
   cursor: pointer;
+  margin: 2px 4px;
+  border-radius: 8px;
   :hover {
     background-color: #282828;
   }

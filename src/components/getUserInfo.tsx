@@ -4,7 +4,7 @@ import { reducerCases } from "../utils/Constants";
 import { useStateProvider } from "../utils/StateProvider";
 
 const useUserInfoEffect = (token: unknown) => {
-  const [, dispatch] = useStateProvider();
+  const [, dispatch] = useStateProvider();  
 
   useEffect(() => {
     const getUserInfo = async () => {
