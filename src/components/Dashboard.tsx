@@ -55,72 +55,63 @@ function Dashboard() {
   return (
     <ThemeProvider theme={theme}>
       <Drawer />
-      <Paper
+      <Box
         sx={{
           position: "fixed",
           top: 0,
-          left: 0,
-          right: "5%",
+          left: "20%",
           width: "100%",
           zIndex: 1,
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
           padding: "12px",
-          backgroundColor: "#111",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            gap: "5px",
-            marginLeft: "350px",
-          }}
+        <ArrowLeft fontSize="large" sx={{ cursor: "pointer" }} />
+        <ArrowRight fontSize="large" sx={{ cursor: "pointer" }} />
+      </Box>
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: "90%",
+          gap: "10px",
+          width: "100%",
+          zIndex: 1,
+          display: "flex",
+          flexDirection: "row",
+          padding: "12px",
+        }}
+      >
+        <Link
+          to="/notifications"
+          style={{ textDecoration: "none", color: "lightgrey" }}
         >
-          <ArrowLeft fontSize="large" sx={{ cursor: "pointer" }} />
-          <ArrowRight fontSize="large" sx={{ cursor: "pointer" }} />
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            gap: "15px",
-            alignItems: "center",
-            marginRight: "20px",
-          }}
+          <Notifications fontSize="medium" sx={{ cursor: "pointer" }} />
+        </Link>
+        <Link
+          to="/profile"
+          style={{ textDecoration: "none", color: "lightgrey" }}
         >
-          <Link
-            to="/notifications"
-            style={{ textDecoration: "none", color: "lightgrey" }}
-          >
-            <Notifications fontSize="medium" sx={{ cursor: "pointer" }} />
-          </Link>
-          <Link
-            to="/profile"
-            style={{ textDecoration: "none", color: "lightgrey" }}
-          >
-            <Tooltip title={userInfo?.userName} placement="bottom">
-              <Avatar
-                src={userInfo.userImage}
-                sx={{
-                  height: "30px",
-                  width: "30px",
-                  cursor: "pointer",
-                }}
-              />
-            </Tooltip>
-          </Link>
-        </Box>
-      </Paper>
+          <Tooltip title={userInfo?.userName} placement="bottom">
+            <Avatar
+              src={userInfo.userImage}
+              sx={{
+                height: "30px",
+                width: "30px",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+        </Link>
+      </Box>
       <Paper
         sx={{
           position: "fixed",
           left: isMobile ? "15%" : isFHD ? "13%" : "12%",
           right: 0,
           top: 0,
-          backgroundColor: "#171717",
+          background: "linear-gradient(to bottom, #111, #000000)",
           overflowY: "auto",
           height: "100%",
           paddingLeft: "5px",

@@ -30,6 +30,7 @@ export function Drawer() {
         sx={{
           width: "330px",
           height: "100vh",
+          background: "#000000",
         }}
       >
         <List>

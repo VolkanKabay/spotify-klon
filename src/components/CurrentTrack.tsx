@@ -105,7 +105,7 @@ export default function CurrentTrack() {
   );
 }
 
-export function formatTimestamps(milliseconds: number): string {
+function formatTimestamps(milliseconds: number): string {
   const seconds = Math.floor((milliseconds / 1000) % 60);
   const minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
   return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;

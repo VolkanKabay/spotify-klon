@@ -6,6 +6,7 @@ import {
   ThemeProvider,
   Tooltip,
   createTheme,
+  useMediaQuery,
 } from "@mui/material";
 import {
   ArrowLeft,
@@ -13,9 +14,12 @@ import {
   Notifications,
   SearchOutlined,
 } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import { Drawer } from "./Drawer";
 import { useStateProvider } from "../utils/StateProvider";
 import useUserInfoEffect from "./getUserInfo";
+import { SongBody } from "./SongBody";
+
 const theme = createTheme({
   typography: {
     fontFamily: "Figtree, sans-serif",
@@ -49,111 +53,77 @@ const theme = createTheme({
 });
 
 function SearchDashBoard() {
+  const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
+  const isMobile = useMediaQuery("(max-width: 1919px)");
+
   const [{ token, userInfo }] = useStateProvider();
   useUserInfoEffect(token);
 
   return (
     <ThemeProvider theme={theme}>
       <Drawer />
-      <Paper
+
+      <Box
         sx={{
           position: "fixed",
-          top: "0%",
-          left: "0%",
+          top: 0,
+          left: "20%",
           width: "100%",
-          height: "100vh",
-          backgroundColor: "#111",
-        }}
-      />
-      <Paper
-        sx={{
-          position: "fixed",
-          top: "1.25%",
-          left: "15%",
-          width: "85%",
-          height: "100vh",
-          backgroundColor: "#171717",
+          zIndex: 1,
+          display: "flex",
+          flexDirection: "row",
+          padding: "12px",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            position: "fixed",
-            top: "2%",
-            left: "18.5%",
-            zIndex: 1,
+        <ArrowLeft fontSize="large" sx={{ cursor: "pointer" }} />
+        <ArrowRight fontSize="large" sx={{ cursor: "pointer" }} />
+        <TextField
+          type="search"
+          placeholder="Was möchtest du hören?"
+          size="small"
+          InputProps={{
+            sx: {
+              borderRadius: "30px",
+              backgroundColor: "#232324",
+              width: "400px",
+              color: "lightgrey",
+            },
+            startAdornment: (
+              <SearchOutlined
+                fontSize="medium"
+                sx={{
+                  color: "lightgrey",
+                  marginRight: "10px",
+                }}
+              />
+            ),
           }}
+        />
+      </Box>
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: "90%",
+          gap: "10px",
+          width: "100%",
+          zIndex: 1,
+          display: "flex",
+          flexDirection: "row",
+          padding: "12px",
+        }}
+      >
+        <Link
+          to="/notifications"
+          style={{ textDecoration: "none", color: "lightgrey" }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "5px",
-              padding: "12px",
-            }}
-          >
-            <ArrowLeft
-              fontSize="large"
-              sx={{
-                cursor: "pointer",
-                background: "#111",
-                borderRadius: "50%",
-              }}
-            />
-            <ArrowRight
-              fontSize="large"
-              sx={{
-                cursor: "pointer",
-                background: "#111",
-                borderRadius: "50%",
-              }}
-            />
-          </Box>
-          <TextField
-            type="search"
-            placeholder="Was möchtest du hören?"
-            InputProps={{
-              sx: {
-                borderRadius: "30px",
-                backgroundColor: "#232324",
-                width: "400px",
-                color: "lightgrey",
-              },
-              startAdornment: (
-                <SearchOutlined
-                  fontSize="medium"
-                  sx={{
-                    color: "lightgrey",
-                    marginRight: "10px",
-                  }}
-                />
-              ),
-            }}
-          />
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            position: "fixed",
-            right: "3%",
-            top: "3.3%",
-          }}
+          <Notifications fontSize="medium" sx={{ cursor: "pointer" }} />
+        </Link>
+        <Link
+          to="/profile"
+          style={{ textDecoration: "none", color: "lightgrey" }}
         >
-          <Notifications
-            fontSize="medium"
-            sx={{
-              cursor: "pointer",
-              background: "#111",
-              borderRadius: "50%",
-              padding: "4px",
-              top: "3.2%",
-              right: "5.5%",
-              position: "fixed",
-            }}
-          />
-          <Tooltip title={userInfo.userName} placement="bottom">
+          <Tooltip title={userInfo?.userName} placement="bottom">
             <Avatar
               src={userInfo.userImage}
               sx={{
@@ -163,7 +133,21 @@ function SearchDashBoard() {
               }}
             />
           </Tooltip>
-        </Box>
+        </Link>
+      </Box>
+      <Paper
+        sx={{
+          position: "fixed",
+          left: isMobile ? "15%" : isFHD ? "13%" : "12%",
+          right: 0,
+          top: 0,
+          background: "linear-gradient(to bottom, #111, #000000)",
+          overflowY: "auto",
+          height: "100%",
+          paddingLeft: "5px",
+        }}
+      >
+        <SongBody />
       </Paper>
     </ThemeProvider>
   );
