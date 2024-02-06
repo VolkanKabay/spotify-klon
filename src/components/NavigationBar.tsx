@@ -8,7 +8,7 @@ import useUserInfoEffect from "./getUserInfo";
 export function NavigationBar() {
   const [{ token, userInfo }] = useStateProvider();
   useUserInfoEffect(token);
-
+  console.log(userInfo);
   return (
     <>
       <Box
@@ -45,10 +45,7 @@ export function NavigationBar() {
         >
           <Notifications fontSize="medium" sx={{ cursor: "pointer" }} />
         </Link>
-        <Link
-          to="/profile"
-          style={{ textDecoration: "none", color: "lightgrey" }}
-        >
+        <Link to="/" style={{ textDecoration: "none", color: "lightgrey" }}>
           <Tooltip title={userInfo?.userName} placement="bottom">
             <Avatar
               src={userInfo.userImage}
