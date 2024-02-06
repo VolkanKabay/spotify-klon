@@ -6,7 +6,7 @@ export const initialState = {
   playlists: [],
   userInfo: { userId: null, userName: null, userImage: null },
   selectedPlaylistId: null,
-  selectedPlaylist: undefined,
+  selectedPlaylist: null,
   currentlyPlaying: null,
 };
 

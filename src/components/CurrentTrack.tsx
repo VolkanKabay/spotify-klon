@@ -23,23 +23,28 @@ export default function CurrentTrack() {
           }
         );
         const { item } = response.data;
-        const newCurrentlyPlaying = {
-          name: item.name,
-          artist: item.artists.map((artist: any) => artist.name),
-          id: item.id,
-          image: item.album.images[2].url,
-          duration: item.duration_ms,
-          progress: response.data.progress_ms,
-        };
 
-        const progressPercentage =
-          (response.data.progress_ms / item.duration_ms) * 100;
-        setProgressPercentage(progressPercentage);
+        if (item && item.name && item.artists && item.album) {
+          const newCurrentlyPlaying = {
+            name: item.name,
+            artist: item.artists.map((artist: any) => artist.name),
+            id: item.id,
+            image: item.album.images[2].url,
+            duration: item.duration_ms,
+            progress: response.data.progress_ms,
+          };
 
-        dispatch({
-          type: reducerCases.SET_CURRENTLY_PLAYING,
-          currentlyPlaying: newCurrentlyPlaying,
-        });
+          const progressPercentage =
+            (response.data.progress_ms / item.duration_ms) * 100;
+          setProgressPercentage(progressPercentage);
+
+          dispatch({
+            type: reducerCases.SET_CURRENTLY_PLAYING,
+            currentlyPlaying: newCurrentlyPlaying,
+          });
+        } else {
+          console.error("Currently playing track data is incomplete:", item);
+        }
       } catch (error) {
         console.error("Error fetching current track:", error);
       }

@@ -1,12 +1,5 @@
 import React, { useState, useEffect, useRef, ChangeEvent } from "react";
-import {
-  Box,
-  Container,
-  LinearProgress,
-  Typography,
-  Slider,
-  AppBar,
-} from "@mui/material";
+import { Box, Container, Typography, Slider, AppBar } from "@mui/material";
 import {
   Pause,
   PlayArrow,
@@ -43,8 +36,6 @@ function MusicAppBar({
 
   const audioRef = useRef(new Audio(songs[currentSongIndex]));
   const isMobile = useMediaQuery("(max-width:600px)");
-  const isWQHD = useMediaQuery("(min-width:2560px)");
-  const isFHD = useMediaQuery("(min-width:1920px)");
   const handleVolumeSliderChange = (
     _event: Event,
     value: number | number[]
@@ -78,17 +69,6 @@ function MusicAppBar({
     audioRef.current.src = songs[prevSongIndex];
     audioRef.current.play();
     setIsPlaying(true);
-  };
-
-  const handleSeek = (event: React.MouseEvent<object>) => {
-    const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
-    const clickX = event.clientX - rect.left;
-    const percentage = (clickX / rect.width) * 100;
-
-    const newTime = (percentage / 100) * duration;
-    audioRef.current.currentTime = newTime;
-
-    setCurrentTime(newTime);
   };
 
   const handleShuffleClick = () => {
@@ -194,36 +174,6 @@ function MusicAppBar({
         </Typography>
         {isDurationAvailable && (
           <>
-            <LinearProgress
-              value={(currentTime / duration) * 100}
-              variant="determinate"
-              sx={{
-                backgroundColor: "rgba(255, 255, 255, 0.5)",
-                "& .MuiLinearProgress-bar": {
-                  backgroundColor: "white",
-                  ":hover": {
-                    backgroundColor: "lightgreen",
-                  },
-                },
-                width: isWQHD
-                  ? "52%"
-                  : isMobile
-                  ? "52%"
-                  : isFHD
-                  ? "37%"
-                  : "37%",
-                bottom: "3%",
-                position: "fixed",
-                transform: isWQHD
-                  ? "translateX(40%)"
-                  : isMobile
-                  ? "translateX(24%)"
-                  : isFHD
-                  ? "translateX(14%)"
-                  : "translateX(35%)",
-              }}
-              onClick={handleSeek}
-            />
             <Typography
               fontSize="small"
               sx={{
@@ -239,7 +189,7 @@ function MusicAppBar({
         <Container
           sx={{
             position: "fixed",
-            bottom: isMobile ? "6%" : "4%",
+            bottom: isMobile ? "4%" : "2%",
             left: "50%",
             transform: "translateX(-50%)",
             display: "flex",
