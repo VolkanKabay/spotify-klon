@@ -89,15 +89,15 @@ export default function CurrentTrack() {
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography variant="body2">
-            {formatTime(currentlyPlaying.progress)}
+            {formatTimestamps(currentlyPlaying.progress)}
           </Typography>
           <progress
             value={progressPercentage}
             max={100}
-            style={{ width: "100px", marginLeft: "0.5rem" }}
+            style={{ width: "100px", margin: "0.3rem" }}
           />
           <Typography variant="body2">
-            {formatTime(currentlyPlaying.duration)}
+            {formatTimestamps(currentlyPlaying.duration)}
           </Typography>
         </Box>
       </Box>
@@ -105,7 +105,7 @@ export default function CurrentTrack() {
   );
 }
 
-function formatTime(milliseconds: number): string {
+export function formatTimestamps(milliseconds: number): string {
   const seconds = Math.floor((milliseconds / 1000) % 60);
   const minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
   return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;

@@ -25,6 +25,8 @@ import sweaterWeatherSong from "/images/sweater-weather.mp3";
 import meetMeAtOurSpotSong from "/images/meetmeatourspot.mp3";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CurrentTrack from "./CurrentTrack";
+import { useStateProvider } from "../utils/StateProvider";
+import { formatTimestamps } from "./CurrentTrack";
 const songs = [sweaterWeatherSong, meetMeAtOurSpotSong];
 
 function MusicAppBar({
@@ -42,6 +44,7 @@ function MusicAppBar({
   const [isDurationAvailable, setIsDurationAvailable] = useState(false);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [{ currentlyPlaying }] = useStateProvider();
 
   const audioRef = useRef(new Audio(songs[currentSongIndex]));
   const isMobile = useMediaQuery("(max-width:600px)");
@@ -208,7 +211,7 @@ function MusicAppBar({
             }}
             onClick={handleFavoriteClick}
           />
-          {formatTime(currentTime)}
+          {formatTimestamps(currentlyPlaying.progress)}
         </Typography>
         {isDurationAvailable && (
           <>
@@ -250,7 +253,7 @@ function MusicAppBar({
                 bottom: "2%",
               }}
             >
-              {formatTime(duration)}
+              {formatTimestamps(currentlyPlaying.duration)}
             </Typography>
           </>
         )}
