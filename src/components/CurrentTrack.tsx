@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
 import axios from "axios";
@@ -8,6 +8,7 @@ import { Box, Container } from "@mui/system";
 
 export default function CurrentTrack() {
   const [{ token, currentlyPlaying }, dispatch] = useStateProvider();
+  const [progressPercentage, setProgressPercentage] = useState(0);
 
   useEffect(() => {
     const getCurrentTrack = async () => {
@@ -21,14 +22,20 @@ export default function CurrentTrack() {
             },
           }
         );
-
+        console.log(response.data);
         const { item } = response.data;
         const newCurrentlyPlaying = {
           name: item.name,
           artist: item.artists.map((artist: any) => artist.name),
           id: item.id,
           image: item.album.images[2].url,
+          duration: item.duration_ms,
+          progress: response.data.progress_ms,
         };
+
+        const progressPercentage =
+          (response.data.progress_ms / item.duration_ms) * 100;
+        setProgressPercentage(progressPercentage);
 
         dispatch({
           type: reducerCases.SET_CURRENTLY_PLAYING,
@@ -40,6 +47,12 @@ export default function CurrentTrack() {
     };
 
     getCurrentTrack();
+
+    const interval = setInterval(() => {
+      getCurrentTrack();
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, [token, dispatch]);
 
   if (!currentlyPlaying) {
@@ -74,7 +87,26 @@ export default function CurrentTrack() {
         <Typography fontSize={12}>
           {currentlyPlaying.artist.join(", ")}
         </Typography>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="body2">
+            {formatTime(currentlyPlaying.progress)}
+          </Typography>
+          <progress
+            value={progressPercentage}
+            max={100}
+            style={{ width: "100px", marginLeft: "0.5rem" }}
+          />
+          <Typography variant="body2">
+            {formatTime(currentlyPlaying.duration)}
+          </Typography>
+        </Box>
       </Box>
     </Container>
   );
+}
+
+function formatTime(milliseconds: number): string {
+  const seconds = Math.floor((milliseconds / 1000) % 60);
+  const minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
+  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 }
