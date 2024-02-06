@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, ChangeEvent } from "react";
+import { useState, useEffect, useRef, ChangeEvent } from "react";
 import { Box, Container, Typography, Slider, AppBar } from "@mui/material";
 import {
   Pause,
