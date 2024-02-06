@@ -48,7 +48,6 @@ const theme = createTheme({
 });
 
 function Dashboard() {
-  const isWQHD = useMediaQuery("(min-width: 2560px)");
   const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
   const isMobile = useMediaQuery("(max-width: 1919px)");
   const [{ token, userInfo }] = useStateProvider();
