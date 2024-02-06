@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, ChangeEvent } from "react";
-import { Box, Container, Typography, Slider, AppBar } from "@mui/material";
+import { Box, Container, Slider, AppBar } from "@mui/material";
 import {
   Pause,
   PlayArrow,
@@ -29,9 +29,6 @@ function MusicAppBar({
   const [isPlaying, setIsPlaying] = useState(false);
   const [isShuffleActive, setIsShuffleActive] = useState(false);
   const [isReplayActive, setIsReplayActive] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [isDurationAvailable, setIsDurationAvailable] = useState(false);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
 
   const audioRef = useRef(new Audio(songs[currentSongIndex]));
@@ -100,14 +97,7 @@ function MusicAppBar({
         handlePausePlayToggle();
       }
     };
-    const handleTimeUpdate = () => {
-      setCurrentTime(audioRef.current.currentTime);
-    };
 
-    const handleLoadedMetadata = () => {
-      setDuration(audioRef.current.duration);
-      setIsDurationAvailable(true);
-    };
     document.addEventListener("keydown", handleKeyDown);
 
     const handleSongEnd = () => {
@@ -119,8 +109,6 @@ function MusicAppBar({
       }
     };
 
-    audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
-    audioRef.current.addEventListener("loadedmetadata", handleLoadedMetadata);
     audioRef.current.addEventListener("ended", handleSongEnd);
 
     const currentAudioRef = audioRef.current;
@@ -128,11 +116,6 @@ function MusicAppBar({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
 
-      currentAudioRef.removeEventListener("timeupdate", handleTimeUpdate);
-      currentAudioRef.removeEventListener(
-        "loadedmetadata",
-        handleLoadedMetadata
-      );
       currentAudioRef.removeEventListener("ended", handleSongEnd);
     };
   }, [handleSkipNext, isReplayActive, handlePausePlayToggle]);
@@ -148,44 +131,20 @@ function MusicAppBar({
       }}
     >
       <Container>
-        <Typography
-          fontSize="small"
+        <Box
           sx={{
+            display: "flex",
+            justifyContent: "start",
+            alignItems: "start",
+            flexDirection: "column",
             position: "fixed",
-            left: "30%",
-            bottom: "2%",
+            left: "0%",
+            bottom: "1.5%",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "start",
-              alignItems: "start",
-              flexDirection: "column",
-              position: "fixed",
-              left: "0%",
-              bottom: "1.5%",
-            }}
-          >
-            <CurrentTrack />
-          </Box>
+          <CurrentTrack />
+        </Box>
 
-          {formatTime(currentTime)}
-        </Typography>
-        {isDurationAvailable && (
-          <>
-            <Typography
-              fontSize="small"
-              sx={{
-                position: "fixed",
-                right: isMobile ? "13%" : "29%",
-                bottom: "2%",
-              }}
-            >
-              {formatTime(duration)}
-            </Typography>
-          </>
-        )}
         <Container
           sx={{
             position: "fixed",
@@ -333,15 +292,6 @@ function MusicAppBar({
       </Container>
     </AppBar>
   );
-}
-
-function formatTime(time: number) {
-  const minutes = Math.floor(time / 60);
-  const seconds = Math.floor(time % 60);
-  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
-    2,
-    "0"
-  )}`;
 }
 
 export default MusicAppBar;
