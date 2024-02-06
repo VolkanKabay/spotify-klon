@@ -17,7 +17,6 @@ import {
   CloseFullscreen,
   VolumeOffOutlined,
   VolumeDownOutlined,
-  Favorite,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
@@ -41,7 +40,6 @@ function MusicAppBar({
   const [duration, setDuration] = useState(0);
   const [isDurationAvailable, setIsDurationAvailable] = useState(false);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const [isFavorite, setIsFavorite] = useState(false);
 
   const audioRef = useRef(new Audio(songs[currentSongIndex]));
   const isMobile = useMediaQuery("(max-width:600px)");
@@ -113,9 +111,6 @@ function MusicAppBar({
 
   const muteSong = () => {
     audioRef.current.volume = 0;
-  };
-  const handleFavoriteClick = () => {
-    setIsFavorite((prevIsFavorite) => !prevIsFavorite);
   };
 
   useEffect(() => {
@@ -195,19 +190,6 @@ function MusicAppBar({
             <CurrentTrack />
           </Box>
 
-          <Favorite
-            fontSize="small"
-            sx={{
-              position: "fixed",
-              bottom: isMobile ? "6.5%" : "4%",
-              left: isMobile ? "90%" : "14%",
-              fill: isFavorite ? "lightgreen" : "white",
-              ":hover": {
-                fill: "lightgreen",
-              },
-            }}
-            onClick={handleFavoriteClick}
-          />
           {formatTime(currentTime)}
         </Typography>
         {isDurationAvailable && (
