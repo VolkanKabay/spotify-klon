@@ -100,14 +100,14 @@ export function SongBody() {
       </Box>
       <button
         style={{
-          borderRadius: "50%", // Apply border radius of 50% to make it perfectly round
+          borderRadius: "50%",
           height: "auto",
           width: "auto",
           background: "#1ED760",
           justifyContent: "center",
           display: "flex",
           margin: "3rem 0 0 0",
-          padding: "1rem", // Add padding to adjust the size of the button
+          padding: "1rem",
         }}
       >
         <PlayArrow sx={{ fill: "black" }} />
@@ -177,7 +177,7 @@ export function SongBody() {
             }}
           >
             <Typography
-              sx={{ width: "10px", textAlign: "right", marginRight: "10px" }}
+              sx={{ width: "10px", textAlign: "right", marginRight: "20px" }}
             >
               {index + 1}.
             </Typography>
