@@ -5,12 +5,9 @@ export const initialState = {
   token: null,
   playlists: [],
   userInfo: { userId: null, userName: null, userImage: null },
-  selectedPlaylistId: null, // Initially set to null
+  selectedPlaylistId: null,
   selectedPlaylist: undefined,
-  currentlyPlaying: {
-    trackId: null,
-    isPlaying: false,
-  },
+  currentlyPlaying: null,
 };
 
 const reducer = (

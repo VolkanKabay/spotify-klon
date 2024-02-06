@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 import sweaterWeatherSong from "/images/sweater-weather.mp3";
 import meetMeAtOurSpotSong from "/images/meetmeatourspot.mp3";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Image from "mui-image";
+import CurrentTrack from "./CurrentTrack";
 const songs = [sweaterWeatherSong, meetMeAtOurSpotSong];
 
 function MusicAppBar({
@@ -161,18 +161,7 @@ function MusicAppBar({
       currentAudioRef.removeEventListener("ended", handleSongEnd);
     };
   }, [handleSkipNext, isReplayActive, handlePausePlayToggle]);
-  const songsInfo = [
-    {
-      image: "/images/sweater-weather-cover.jpg",
-      title: "Sweater Weather",
-      artist: "The Neighbourhood",
-    },
-    {
-      image: "/images/ANXIETY.jpg",
-      title: "Meet Me At Our Spot",
-      artist: "THE ANXIETY",
-    },
-  ];
+
   return (
     <AppBar
       sx={{
@@ -199,42 +188,11 @@ function MusicAppBar({
               alignItems: "start",
               flexDirection: "column",
               position: "fixed",
-              left: "5.5%",
-              bottom: "3%",
+              left: "0%",
+              bottom: "1.5%",
             }}
           >
-            <Image
-              src={songsInfo[currentSongIndex].image}
-              alt={songsInfo[currentSongIndex].title}
-              style={{
-                height: "auto",
-                width: "60px",
-                position: "fixed",
-                left: "1.5%",
-                bottom: "2.5%",
-                transform: "none",
-              }}
-            />
-            <Typography
-              sx={{
-                position: "fixed",
-                bottom: "5%",
-                left: isMobile ? "16%" : "5.45%",
-              }}
-            >
-              {songsInfo[currentSongIndex].title}
-            </Typography>
-            <Typography
-              color={"darkgray"}
-              fontSize={"13px"}
-              sx={{
-                position: "fixed",
-                bottom: "3%",
-                left: isMobile ? "16%" : "5.5%",
-              }}
-            >
-              {songsInfo[currentSongIndex].artist}
-            </Typography>
+            <CurrentTrack />
           </Box>
 
           <Favorite
