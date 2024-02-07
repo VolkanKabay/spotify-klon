@@ -43,7 +43,7 @@ export default function Playlists() {
               id,
               type,
               owner,
-              image: images && images.length ? images[0].url : null,
+              image: images?.[0]?.url ?? null,
             };
           }
         );

@@ -1,56 +1,107 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useStateProvider } from "../utils/StateProvider";
 import axios from "axios";
 import { reducerCases } from "../utils/Constants";
-import { Box, Container, Divider, Typography } from "@mui/material";
+import { Box, Container, Divider, Typography, Skeleton } from "@mui/material";
 import { PlayArrow } from "@mui/icons-material";
 
 export function SongBody() {
   const [{ token, selectedPlaylistId, selectedPlaylist, userInfo }, dispatch] =
     useStateProvider();
+  const [loading, setLoading] = useState(true); // State to track loading status
 
   useEffect(() => {
     const getInitialPlaylist = async () => {
-      const response = await axios.get(
-        `https://api.spotify.com/v1/playlists/${selectedPlaylistId}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-            "Content-type": "application/json",
-          },
-        }
-      );
+      try {
+        const response = await axios.get(
+          `https://api.spotify.com/v1/playlists/${selectedPlaylistId}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-type": "application/json",
+            },
+          }
+        );
 
-      const selectedPlaylistData = {
-        name: response.data.name,
-        id: response.data.id,
-        description: response.data.description.startsWith("<a")
-          ? ""
-          : response.data.description,
-        type: response.data.type,
-        owner: response.data.owner,
-        image: response.data.images[0].url,
-        tracks: response.data.tracks.items.map(({ track }: { track: any }) => ({
-          id: track.id,
-          name: track.name,
-          artists: track.artists.map((artist: { name: any }) => artist.name),
-          album: track.album.name,
-          context_uri: track.album.uri,
-          track_number: track.track_number,
-          image: track.album.images[2].url,
-        })),
-      };
-      dispatch({
-        type: reducerCases.SET_PLAYLIST,
-        selectedPlaylist: selectedPlaylistData,
-      });
+        const selectedPlaylistData = {
+          name: response.data.name,
+          id: response.data.id,
+          description: response.data.description.startsWith("<a")
+            ? ""
+            : response.data.description,
+          type: response.data.type,
+          owner: response.data.owner,
+          image: response.data.images[0].url,
+          tracks: response.data.tracks.items.map(
+            ({ track }: { track: any }) => ({
+              id: track.id,
+              name: track.name,
+              artists: track.artists.map(
+                (artist: { name: any }) => artist.name
+              ),
+              album: track.album.name,
+              context_uri: track.album.uri,
+              track_number: track.track_number,
+              image: track.album.images[2].url,
+            })
+          ),
+        };
+        dispatch({
+          type: reducerCases.SET_PLAYLIST,
+          selectedPlaylist: selectedPlaylistData,
+        });
+      } catch (error) {
+        console.error("Error fetching playlist:", error);
+      } finally {
+        setLoading(false); // Set loading to false when done fetching
+      }
     };
     getInitialPlaylist();
   }, [token, dispatch, selectedPlaylistId]);
-  if (!selectedPlaylist) {
-    return null;
+
+  if (loading || !selectedPlaylist) {
+    return (
+      <Container sx={{ marginLeft: "3.5rem", width: "100%" }}>
+        <Box sx={{ display: "flex" }}>
+          <Skeleton
+            variant="rectangular"
+            width={200}
+            height={200}
+            sx={{ marginTop: "5%" }}
+          />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px",
+              justifyContent: "start",
+              alignItems: "start",
+              marginLeft: "20px",
+              marginTop: "5rem",
+            }}
+          >
+            <Skeleton width={200} height={20} />
+            <Skeleton width={300} height={40} />
+            <Skeleton width={200} height={40} />
+            <Skeleton width={200} height={20} />
+          </Box>
+        </Box>
+        <Box sx={{ marginTop: "2rem" }}>
+          {[...Array(10)].map((_, index) => (
+            <Box key={index} sx={{ display: "flex", alignItems: "center" }}>
+              <Skeleton width={50} height={50} />
+              <Box sx={{ marginLeft: 2 }}>
+                <Skeleton width={200} height={20} />
+                <Skeleton width={100} height={20} />
+              </Box>
+            </Box>
+          ))}
+        </Box>
+      </Container>
+    );
   }
+
   return (
     <Container sx={{ marginLeft: "3.5rem", width: "100%" }}>
       <Box sx={{ display: "flex" }}>

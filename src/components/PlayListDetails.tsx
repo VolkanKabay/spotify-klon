@@ -42,25 +42,33 @@ export function PlaylistDetails() {
       },
     },
   });
+  let leftPosition;
+  if (isMobile) {
+    leftPosition = "15%";
+  } else if (isFHD) {
+    leftPosition = "13%";
+  } else {
+    leftPosition = "12%";
+  }
+
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <Drawer />
-        <NavigationBar />
-        <Paper
-          sx={{
-            position: "fixed",
-            left: isMobile ? "15%" : isFHD ? "13%" : "12%",
-            right: 0,
-            top: 0,
-            background: "linear-gradient(to top, #111 50%, #20105E)",
-            overflowY: "auto",
-            height: "100%",
-          }}
-        >
-          <SongBody />
-        </Paper>
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      <Drawer />
+      <NavigationBar />
+
+      <Paper
+        sx={{
+          position: "fixed",
+          left: leftPosition,
+          right: 0,
+          top: 0,
+          background: "linear-gradient(to top, #111 50%, #20105E)",
+          overflowY: "auto",
+          height: "100%",
+        }}
+      >
+        <SongBody />
+      </Paper>
+    </ThemeProvider>
   );
 }
