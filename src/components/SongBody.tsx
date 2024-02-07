@@ -223,7 +223,7 @@ export function SongBody() {
               ":hover": {
                 backgroundColor: "#282828",
                 cursor: "pointer",
-                width: "100%",
+                width: "100vw",
               },
             }}
           >
