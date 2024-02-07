@@ -10,6 +10,7 @@ import { Drawer } from "./Drawer";
 import { NavigationBar } from "./NavigationBar";
 
 import { DashboardItems } from "./DashboardItems";
+import { TopSongs } from "./TopSongs";
 
 const theme = createTheme({
   typography: {
@@ -94,8 +95,9 @@ function Dashboard() {
             marginTop: "5rem",
           }}
         >
-          Recently Played
+          Your Top Songs
         </Typography>
+        <TopSongs />
       </Paper>
     </ThemeProvider>
   );
