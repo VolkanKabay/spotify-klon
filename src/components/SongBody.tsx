@@ -116,8 +116,8 @@ export function SongBody() {
             src={selectedPlaylist?.image}
             alt="playlist"
             style={{
-              height: "150px",
-              width: "150px",
+              height: "200px",
+              width: "200px",
               marginTop: "5rem",
               objectFit: "cover",
             }}
@@ -218,6 +218,7 @@ export function SongBody() {
           gap: "10px",
           marginTop: "2rem",
           alignItems: "start",
+          paddingBottom: "10rem",
         }}
       >
         {selectedPlaylist?.tracks.map((track: any, index: number) => (

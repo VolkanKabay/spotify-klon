@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
 import axios from "axios";
@@ -9,6 +9,7 @@ import {
   useMediaQuery,
   Select,
   MenuItem,
+  SelectChangeEvent,
 } from "@mui/material";
 
 export function TopSongs() {
@@ -55,11 +56,10 @@ export function TopSongs() {
     getTopTracks();
   }, [token, dispatch, timeRange]);
 
-  const handleTimeRangeChange = (
-    event: React.ChangeEvent<{ value: string }>
-  ) => {
+  const handleTimeRangeChange = (event: SelectChangeEvent<string>) => {
     setTimeRange(event.target.value);
   };
+
   return (
     <>
       <Box sx={{}}>

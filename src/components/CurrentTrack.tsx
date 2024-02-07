@@ -60,7 +60,18 @@ export default function CurrentTrack() {
   }, [token, dispatch]);
 
   if (!currentlyPlaying) {
-    return <div>Nothing is being played!</div>;
+    return (
+      <div
+        style={{
+          marginLeft: "3rem",
+          width: "90%",
+        }}
+      >
+        Nothing is being played.
+        <br />
+        Play something on Spotify!
+      </div>
+    );
   }
 
   return (
