@@ -33,6 +33,7 @@ export function SongBody() {
           type: response.data.type,
           owner: response.data.owner,
           image: response.data.images[0].url,
+          external_urls: response.data.external_urls.spotify,
           tracks: response.data.tracks.items.map(
             ({ track }: { track: any }) => ({
               id: track.id,
@@ -105,16 +106,23 @@ export function SongBody() {
   return (
     <Container sx={{ marginLeft: "3.5rem", width: "100%" }}>
       <Box sx={{ display: "flex" }}>
-        <img
-          src={selectedPlaylist?.image}
-          alt="playlist"
-          style={{
-            height: "150px",
-            width: "150px",
-            marginTop: "5rem",
-            objectFit: "cover",
-          }}
-        />
+        <a
+          href={selectedPlaylist?.external_urls}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <img
+            src={selectedPlaylist?.image}
+            alt="playlist"
+            style={{
+              height: "150px",
+              width: "150px",
+              marginTop: "5rem",
+              objectFit: "cover",
+            }}
+          />
+        </a>
         <Box
           sx={{
             display: "flex",
