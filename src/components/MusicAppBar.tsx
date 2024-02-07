@@ -129,12 +129,12 @@ function MusicAppBar({
         background: "#000000",
       }}
     >
-      <Container
+      <Box
         sx={{
           display: "flex",
-          margin: "auto",
-          position: "relative",
-          right: "41vw",
+          alignItems: "center",
+          height: "100%",
+          marginRight: "auto",
         }}
       >
         <CurrentTrack />
@@ -143,6 +143,7 @@ function MusicAppBar({
             position: "fixed",
             bottom: isMobile ? "4%" : "2%",
             left: "50%",
+            width: "300px",
             transform: "translateX(-50%)",
             display: "flex",
             justifyContent: "center",
@@ -282,7 +283,7 @@ function MusicAppBar({
             }}
           />
         </Link>
-      </Container>
+      </Box>
     </AppBar>
   );
 }

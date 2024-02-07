@@ -68,8 +68,8 @@ export default function CurrentTrack() {
       sx={{
         display: "flex",
         flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
+        alignItems: "start",
+        justifyContent: "start",
       }}
     >
       <img
