@@ -7,17 +7,15 @@ export function Library() {
   return (
     <Box
       sx={{
-        background: "#171717",
         width: "310px",
         margin: "20px auto 0px auto",
-        height: "100%",
       }}
     >
       <Paper
         sx={{
           backgroundColor: "#171717",
           borderRadius: "10px",
-          height: "cover",
+          height: "100%",
         }}
       >
         <Box

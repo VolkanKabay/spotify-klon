@@ -100,15 +100,13 @@ export default function Playlists() {
 }
 
 const Container = styled.div`
-  height: 100%;
-  overflow: hidden;
+  height: 1000px;
   ul {
     list-style: none;
     padding: 0;
     margin: 0;
     height: 55vh;
     max-height: 100%;
-    overflow: auto;
     padding: 0 8px;
   }
 `;

@@ -126,25 +126,18 @@ function MusicAppBar({
         height: "11vh",
         top: "auto",
         bottom: 0,
-        position: "fixed",
         background: "#000000",
       }}
     >
-      <Container>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "start",
-            alignItems: "start",
-            flexDirection: "column",
-            position: "fixed",
-            left: "0%",
-            bottom: "1.5%",
-          }}
-        >
-          <CurrentTrack />
-        </Box>
-
+      <Container
+        sx={{
+          display: "flex",
+          margin: "auto",
+          position: "relative",
+          right: "41vw",
+        }}
+      >
+        <CurrentTrack />
         <Container
           sx={{
             position: "fixed",
