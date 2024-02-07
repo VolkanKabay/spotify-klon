@@ -9,13 +9,17 @@ export function Library() {
       sx={{
         width: "310px",
         margin: "20px auto 0px auto",
+        height: "100%",
       }}
     >
       <Paper
         sx={{
           backgroundColor: "#171717",
           borderRadius: "10px",
-          height: "100%",
+          width: "310px",
+          height: "100vh",
+          position: "fixed",
+          overflowY: "auto",
         }}
       >
         <Box

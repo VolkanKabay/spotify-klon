@@ -29,7 +29,6 @@ export function Drawer() {
       <Paper
         sx={{
           width: "330px",
-          background: "#000000",
         }}
       >
         <List>
