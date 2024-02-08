@@ -11,9 +11,13 @@ import { Link } from "react-router-dom";
 import { Library } from "./Library";
 import MusicAppBar from "./MusicAppBar";
 import { useState } from "react";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export function Drawer() {
   const [, setCurrentSongIndex] = useState(0);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Detect if screen size is mobile
 
   const handleNextSong = () => {
     setCurrentSongIndex((prevIndex) => (prevIndex + 1) % 2);
@@ -28,7 +32,7 @@ export function Drawer() {
       <MusicAppBar onNextSong={handleNextSong} onPrevSong={handlePrevSong} />
       <Paper
         sx={{
-          width: "330px",
+          width: isMobile ? "100%" : "10%", // Set width to 100% on mobile, 10% otherwise
         }}
       >
         <List>

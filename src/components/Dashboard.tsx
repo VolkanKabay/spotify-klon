@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  Container,
   Paper,
   ThemeProvider,
   Typography,
@@ -47,7 +48,6 @@ const theme = createTheme({
 function Dashboard() {
   const [greeting, setGreeting] = useState("");
   const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
-  const isMobile = useMediaQuery("(max-width: 1919px)");
 
   useEffect(() => {
     const currentHour = new Date().getHours();
@@ -65,39 +65,43 @@ function Dashboard() {
       <NavigationBar />
       <Paper
         sx={{
-          position: "fixed",
-          left: isMobile ? "15%" : isFHD ? "13%" : "12%",
-          right: 0,
-          top: 0,
           background: "linear-gradient(to top, #111 50%, #20105E)",
           overflowY: "auto",
-          height: "100%",
+          height: "100vh",
+          width: "100vw",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          margin: 0,
+          paddingLeft: "5%",
         }}
       >
-        <Typography
-          variant="h4"
-          fontWeight={800}
-          sx={{
-            display: "flex",
-            marginLeft: isFHD ? "5.5rem" : "7.3rem",
-            marginTop: "5rem",
-          }}
-        >
-          {greeting}
-        </Typography>
-        <DashboardItems />
-        <Typography
-          variant="h4"
-          fontWeight={800}
-          sx={{
-            display: "flex",
-            marginLeft: isFHD ? "5.5rem" : "7.3rem",
-            marginTop: "5rem",
-          }}
-        >
-          Deine Top Songs
-        </Typography>
-        <TopSongs />
+        <Container maxWidth="xl">
+          <Typography
+            variant="h4"
+            fontWeight={800}
+            sx={{
+              display: "flex",
+              marginLeft: isFHD ? "1rem" : "9rem",
+              marginTop: "5rem",
+            }}
+          >
+            {greeting}
+          </Typography>
+          <DashboardItems />
+          <Typography
+            variant="h4"
+            fontWeight={800}
+            sx={{
+              display: "flex",
+              marginLeft: isFHD ? "1rem" : "9rem",
+              marginTop: "5rem",
+            }}
+          >
+            Deine Top Songs
+          </Typography>
+          <TopSongs />
+        </Container>
       </Paper>
     </ThemeProvider>
   );

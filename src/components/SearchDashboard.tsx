@@ -45,7 +45,6 @@ const theme = createTheme({
 
 function SearchDashBoard() {
   const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
-  const isMobile = useMediaQuery("(max-width: 1919px)");
 
   return (
     <ThemeProvider theme={theme}>
@@ -53,14 +52,15 @@ function SearchDashBoard() {
       <NavigationBar />
       <Paper
         sx={{
-          position: "fixed",
-          left: isMobile ? "15%" : isFHD ? "13%" : "12%",
-          right: 0,
-          top: 0,
           background: "linear-gradient(to top, #111 50%, #20105E)",
           overflowY: "auto",
-          height: "100%",
-          paddingLeft: "5px",
+          height: "100vh",
+          width: "100vw",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          margin: 0,
+          paddingLeft: "6.5%",
         }}
       >
         <Typography
@@ -68,7 +68,7 @@ function SearchDashBoard() {
           fontWeight={800}
           sx={{
             display: "flex",
-            marginLeft: isFHD ? "5.5rem" : "7.3rem",
+            marginLeft: isFHD ? "21.7rem" : "20.5rem",
             marginBottom: "2rem",
             marginTop: "5rem",
           }}

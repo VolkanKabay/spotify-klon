@@ -15,7 +15,7 @@ import {
 export function TopSongs() {
   const [{ topTracks, token }, dispatch] = useStateProvider();
   const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
-  const [selectValue, setSelectValue] = useState("40-long_term"); // Combined value of length and timeRange
+  const [selectValue, setSelectValue] = useState("40-long_term");
   useEffect(() => {
     const [length, timeRange] = selectValue.split("-");
 
@@ -97,9 +97,11 @@ export function TopSongs() {
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: "1rem",
-          paddingBottom: "8rem",
+          padding: "1rem",
           margin: "auto",
-          maxWidth: isFHD ? "1800px" : "1350px",
+
+          maxWidth: isFHD ? "1800px" : "1200px",
+          paddingBottom: "7rem",
         }}
       >
         {topTracks.map((track: any) => (
