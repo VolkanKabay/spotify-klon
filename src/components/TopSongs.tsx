@@ -16,12 +16,12 @@ export function TopSongs() {
   const [{ topTracks, token }, dispatch] = useStateProvider();
   const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
   const [timeRange, setTimeRange] = useState("short_term"); // Default to short term
-
+  const [length, setLengthRange] = useState("8");
   useEffect(() => {
     const getTopTracks = async () => {
       try {
         const response = await axios.get(
-          `https://api.spotify.com/v1/me/top/tracks?limit=16&time_range=${timeRange}`,
+          `https://api.spotify.com/v1/me/top/tracks?limit=${length}&time_range=${timeRange}`,
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -57,15 +57,32 @@ export function TopSongs() {
       }
     };
     getTopTracks();
-  }, [token, dispatch, timeRange]);
+  }, [token, dispatch, timeRange, length]);
 
   const handleTimeRangeChange = (event: SelectChangeEvent<string>) => {
     setTimeRange(event.target.value);
   };
+  const handleLengthChange = (event: SelectChangeEvent<string>) => {
+    setLengthRange(event.target.value);
+  };
 
   return (
     <>
-      <Box sx={{}}>
+      <Box>
+        <Select
+          value={length}
+          onChange={handleLengthChange}
+          sx={{
+            marginBottom: "1rem",
+            color: "white",
+            backgroundColor: "#232324",
+            marginRight: "1rem",
+          }}
+        >
+          <MenuItem value="8">Show 8 Songs</MenuItem>
+          <MenuItem value="16">Show 16 Songs</MenuItem>
+          <MenuItem value="40">Show 40 Songs</MenuItem>
+        </Select>
         <Select
           value={timeRange}
           onChange={handleTimeRangeChange}
@@ -85,7 +102,7 @@ export function TopSongs() {
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: "1rem",
-          paddingBottom: "6rem",
+          paddingBottom: "8rem",
           margin: "auto",
           maxWidth: isFHD ? "1800px" : "1350px",
         }}
