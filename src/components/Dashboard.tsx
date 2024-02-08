@@ -95,7 +95,7 @@ function Dashboard() {
             marginTop: "5rem",
           }}
         >
-          Your Top Songs
+          Deine Top Songs
         </Typography>
         <TopSongs />
       </Paper>

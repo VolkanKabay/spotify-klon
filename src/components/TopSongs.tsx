@@ -21,7 +21,7 @@ export function TopSongs() {
     const getTopTracks = async () => {
       try {
         const response = await axios.get(
-          `https://api.spotify.com/v1/me/top/tracks?limit=8&time_range=${timeRange}`,
+          `https://api.spotify.com/v1/me/top/tracks?limit=16&time_range=${timeRange}`,
           {
             headers: {
               Authorization: "Bearer " + token,

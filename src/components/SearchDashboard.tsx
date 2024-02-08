@@ -1,6 +1,7 @@
 import {
   Paper,
   ThemeProvider,
+  Typography,
   createTheme,
   useMediaQuery,
 } from "@mui/material";
@@ -8,6 +9,7 @@ import {
 import { Drawer } from "./Drawer";
 
 import { NavigationBar } from "./NavigationBar";
+import { FeaturedPlaylists } from "./FeaturedPlaylists";
 
 const theme = createTheme({
   typography: {
@@ -60,7 +62,21 @@ function SearchDashBoard() {
           height: "100%",
           paddingLeft: "5px",
         }}
-      ></Paper>
+      >
+        <Typography
+          variant="h4"
+          fontWeight={800}
+          sx={{
+            display: "flex",
+            marginLeft: isFHD ? "5.5rem" : "7.3rem",
+            marginBottom: "2rem",
+            marginTop: "5rem",
+          }}
+        >
+          Playlists für dich
+        </Typography>
+        <FeaturedPlaylists />
+      </Paper>
     </ThemeProvider>
   );
 }
