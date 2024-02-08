@@ -53,7 +53,6 @@ export default function CurrentTrack() {
         console.error("Error fetching current track:", error);
       }
     };
-    console.log(currentlyPlaying);
     getCurrentTrack();
 
     const interval = setInterval(() => {
