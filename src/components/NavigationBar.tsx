@@ -1,19 +1,19 @@
-import { Menu, MenuItem } from "@mui/material";
-import { Tooltip, Avatar } from "@mui/material";
+import { Menu, MenuItem, Tooltip, Avatar } from "@mui/material";
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react"; // Import useState and useRef
 import { useStateProvider } from "../utils/StateProvider";
 import useUserInfoEffect from "./getUserInfo";
 import { Notifications } from "@mui/icons-material";
-import "../App.css";
 export function NavigationBar() {
   const [{ token, userInfo }] = useStateProvider();
   useUserInfoEffect(token);
 
-  const [menuAnchorEl, setMenuAnchorEl] = useState(null); // State to manage menu anchor element
+  const [menuAnchorEl, setMenuAnchorEl] = useState<
+    (EventTarget & Element) | null
+  >(null);
 
-  const handleMenuOpen = (event) => {
+  const handleMenuOpen = (event: React.MouseEvent<EventTarget & Element>) => {
     setMenuAnchorEl(event.currentTarget);
   };
 
@@ -21,7 +21,7 @@ export function NavigationBar() {
     setMenuAnchorEl(null);
   };
 
-  const menuRef = useRef(null); // Ref for the menu to handle focus
+  const menuRef = useRef(null);
 
   return (
     <Box

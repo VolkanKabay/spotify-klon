@@ -90,7 +90,10 @@ export function SongBody() {
         </Box>
         <Box sx={{ marginTop: "2rem" }}>
           {[...Array(10)].map((_, index) => (
-            <Box key={index} sx={{ display: "flex", alignItems: "center" }}>
+            <Box
+              key={`item-${index}`}
+              sx={{ display: "flex", alignItems: "center" }}
+            >
               <Skeleton width={50} height={50} />
               <Box sx={{ marginLeft: 2 }}>
                 <Skeleton width={200} height={20} />
