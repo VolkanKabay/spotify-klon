@@ -35,15 +35,18 @@ export function TopSongs() {
             album: { images },
             id,
             name,
+            external_urls,
           }: {
             album: { images: Array<{ url: string }> };
             id: string;
             name: string;
+            external_urls: { spotify: string };
           }) => {
             return {
               id,
               image: images[0].url,
               name,
+              external_urls,
             };
           }
         );
@@ -95,36 +98,46 @@ export function TopSongs() {
               marginBottom: "2rem",
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                backgroundColor: "#282828",
-                borderRadius: "8px",
-                cursor: "pointer",
-              }}
+            <a
+              href={track.external_urls.spotify}
+              target="_blank"
+              rel="noreferrer"
+              style={{ textDecoration: "none", color: "white" }}
             >
-              <img
-                src={track.image}
-                alt={track.name}
-                style={{
-                  width: "90px",
-                  height: "90px",
-                  objectFit: "cover",
-                  marginRight: "1rem",
-                }}
-              />
-              <Typography
-                fontSize={18}
-                fontWeight={700}
+              <Box
                 sx={{
                   display: "flex",
-                  alignItems: "center",
-                  textAlign: "start",
+                  backgroundColor: "#282828",
+                  borderRadius: "8px",
+                  cursor: "pointer",
                 }}
               >
-                {track.name}
-              </Typography>
-            </Box>
+                <img
+                  src={track.image}
+                  alt={track.name}
+                  style={{
+                    width: "90px",
+                    height: "90px",
+                    objectFit: "cover",
+                    marginRight: "1rem",
+                    borderTopLeftRadius: "8px",
+                    borderBottomLeftRadius: "8px",
+                  }}
+                />
+
+                <Typography
+                  fontSize={18}
+                  fontWeight={700}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    textAlign: "start",
+                  }}
+                >
+                  {track.name}
+                </Typography>
+              </Box>
+            </a>
           </Box>
         ))}
       </Box>

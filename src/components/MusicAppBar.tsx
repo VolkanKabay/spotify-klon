@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useRef, ChangeEvent } from "react";
 import { Box, Container, Slider, AppBar } from "@mui/material";
 import {
@@ -49,7 +50,6 @@ function MusicAppBar({
     setIsPlaying((prevIsPlaying) => !prevIsPlaying);
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSkipNext = () => {
     onNextSong();
     const nextSongIndex = (currentSongIndex + 1) % songs.length;

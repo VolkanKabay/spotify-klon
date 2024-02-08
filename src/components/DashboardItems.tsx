@@ -28,18 +28,21 @@ export function DashboardItems() {
               album: { images },
               id,
               name,
+              external_urls,
             },
           }: {
             track: {
               album: { images: Array<{ url: string }> };
               id: string;
               name: string;
+              external_urls: { spotify: string };
             };
           }) => {
             return {
               id,
               image: images[0].url,
               name,
+              external_urls,
             };
           }
         );
@@ -56,11 +59,11 @@ export function DashboardItems() {
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)", // 4 tracks per row
+        gridTemplateColumns: "repeat(4, 1fr)",
         gap: "1rem",
         padding: "1rem",
         margin: "auto",
-        maxWidth: isFHD ? "1800px" : "1200px", // Adjust max width as needed
+        maxWidth: isFHD ? "1800px" : "1200px",
       }}
     >
       {savedTracks.map(
@@ -68,6 +71,7 @@ export function DashboardItems() {
           id: Key | null | undefined;
           image: string | undefined;
           name: string | undefined;
+          external_urls: { spotify: string | undefined };
         }) => (
           <Box
             key={track.id}
@@ -76,36 +80,45 @@ export function DashboardItems() {
               marginBottom: "2rem",
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                backgroundColor: "#282828",
-                borderRadius: "8px", // Rounded corners for the box
-                cursor: "pointer",
-              }}
+            <a
+              href={track.external_urls.spotify}
+              target="_blank"
+              rel="noreferrer"
+              style={{ textDecoration: "none", color: "white" }}
             >
-              <img
-                src={track.image}
-                alt="album"
-                style={{
-                  width: "90px", // Reduced image width
-                  height: "90px", // Reduced image height
-                  objectFit: "cover",
-                  marginRight: "1rem", // Increased margin between image and text
-                }}
-              />
-              <Typography
-                fontSize={18} // Reduced font size
-                fontWeight={700}
+              <Box
                 sx={{
                   display: "flex",
-                  alignItems: "center",
-                  textAlign: "start",
+                  backgroundColor: "#282828",
+                  borderRadius: "8px",
+                  cursor: "pointer",
                 }}
               >
-                {track.name}
-              </Typography>
-            </Box>
+                <img
+                  src={track.image}
+                  alt="album"
+                  style={{
+                    width: "90px",
+                    height: "90px",
+                    objectFit: "cover",
+                    marginRight: "1rem",
+                    borderTopLeftRadius: "8px",
+                    borderBottomLeftRadius: "8px",
+                  }}
+                />
+                <Typography
+                  fontSize={18}
+                  fontWeight={700}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    textAlign: "start",
+                  }}
+                >
+                  {track.name}
+                </Typography>
+              </Box>
+            </a>
           </Box>
         )
       )}

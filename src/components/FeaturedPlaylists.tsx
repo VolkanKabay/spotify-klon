@@ -7,7 +7,7 @@ import { reducerCases } from "../utils/Constants";
 export function FeaturedPlaylists() {
   const [{ featuredPlaylists, token }, dispatch] = useStateProvider();
   const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getFeaturedPlaylists = async () => {
@@ -51,7 +51,7 @@ export function FeaturedPlaylists() {
           featuredPlaylists,
         });
 
-        setLoading(false); // Set loading to false when data is fetched
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching playlist data:", error);
       }
@@ -60,7 +60,6 @@ export function FeaturedPlaylists() {
   }, [token, dispatch]);
 
   if (loading) {
-    // Render skeleton while loading
     return (
       <Box
         sx={{
