@@ -3,7 +3,14 @@ import { useEffect, useState } from "react";
 import { useStateProvider } from "../utils/StateProvider";
 import axios from "axios";
 import { reducerCases } from "../utils/Constants";
-import { Box, Container, Divider, Typography, Skeleton } from "@mui/material";
+import {
+  Box,
+  Container,
+  Divider,
+  Typography,
+  Skeleton,
+  Link,
+} from "@mui/material";
 import { PlayArrow } from "@mui/icons-material";
 
 export function SongBody() {
@@ -45,6 +52,8 @@ export function SongBody() {
               context_uri: track.album.uri,
               track_number: track.track_number,
               image: track.album.images[2].url,
+              external_urls: track.external_urls.spotify,
+              album_external_urls: track.album.external_urls.spotify,
             })
           ),
         };
@@ -244,41 +253,63 @@ export function SongBody() {
             >
               {index + 1}.
             </Typography>
-            <img
-              src={track.image}
-              alt="album"
+            <Link
+              href={track.external_urls}
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                height: "50px",
-                width: "50px",
-                objectFit: "cover",
-                marginRight: "10px",
-              }}
-            />
-            <Box
-              sx={{
+                textDecoration: "none",
+                color: "inherit",
                 display: "flex",
-                flexDirection: "column",
-                alignItems: "start",
               }}
             >
-              <Typography fontWeight={700} sx={{ marginRight: "5px" }}>
-                {track.name}
-              </Typography>
-              <Typography sx={{ marginRight: "5px" }}>
-                {track.artists.join(", ")}
-              </Typography>
-            </Box>
-            <Typography
-              sx={{
+              <img
+                src={track.image}
+                alt="album"
+                style={{
+                  height: "50px",
+                  width: "50px",
+                  objectFit: "cover",
+                  marginRight: "10px",
+                }}
+              />
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "start",
+                }}
+              >
+                <Typography fontWeight={700} sx={{ marginRight: "5px" }}>
+                  {track.name}
+                </Typography>
+                <Typography sx={{ marginRight: "5px" }}>
+                  {track.artists.join(", ")}
+                </Typography>
+              </Box>
+            </Link>
+            <Link
+              href={track.album_external_urls}
+              target="_blank"
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                alignItems: "center",
                 display: "flex",
-                flexDirection: "row",
-                position: "absolute",
-                left: "50%",
-                textAlign: "start",
               }}
             >
-              {track.album}
-            </Typography>
+              <Typography
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  position: "absolute",
+                  left: "50%",
+                  textAlign: "start",
+                }}
+              >
+                {track.album}
+              </Typography>
+            </Link>
           </Box>
         ))}
       </Box>
