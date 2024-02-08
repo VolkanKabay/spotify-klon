@@ -68,9 +68,7 @@ export function NavigationBar() {
         <MenuItem onClick={handleMenuClose}>Konto</MenuItem>
         <MenuItem onClick={handleMenuClose}>Profil</MenuItem>
         <MenuItem onClick={handleMenuClose}>Einstellungen</MenuItem>
-        <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-          <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
-        </Link>
+        <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
       </Menu>
     </Box>
   );
