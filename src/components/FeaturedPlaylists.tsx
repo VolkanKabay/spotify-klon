@@ -28,17 +28,20 @@ export function FeaturedPlaylists() {
             images,
             name,
             description,
+            external_urls,
           }: {
             id: string;
             images: Array<{ url: string }>;
             name: string;
             description: string;
+            external_urls: { spotify: string };
           }) => {
             return {
               id,
               image: images[0].url,
               name,
               description,
+              external_urls,
             };
           }
         );
@@ -110,6 +113,7 @@ export function FeaturedPlaylists() {
           image: string;
           name: string;
           description: string;
+          external_urls: { spotify: string };
         }) => {
           return (
             <Box key={playlist.id}>
@@ -125,27 +129,29 @@ export function FeaturedPlaylists() {
                   height: "27rem",
                 }}
               >
-                <img
-                  src={playlist.image}
-                  alt={playlist.name}
-                  style={{ borderRadius: "10px", marginBottom: "1rem" }}
-                />
-                <Typography
-                  fontSize={20}
-                  fontWeight={800}
-                  style={{
-                    color: "white",
-                  }}
-                >
-                  {playlist.name}
-                </Typography>
-                <Typography
-                  fontSize={19}
-                  fontWeight={400}
-                  style={{ color: "grey" }}
-                >
-                  {playlist.description}
-                </Typography>
+                <a href={playlist.external_urls.spotify} target="_blank">
+                  <img
+                    src={playlist.image}
+                    alt={playlist.name}
+                    style={{ borderRadius: "10px", marginBottom: "1rem" }}
+                  />
+                  <Typography
+                    fontSize={20}
+                    fontWeight={800}
+                    style={{
+                      color: "white",
+                    }}
+                  >
+                    {playlist.name}
+                  </Typography>
+                  <Typography
+                    fontSize={19}
+                    fontWeight={400}
+                    style={{ color: "grey" }}
+                  >
+                    {playlist.description}
+                  </Typography>
+                </a>
               </Paper>
             </Box>
           );
