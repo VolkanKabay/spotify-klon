@@ -22,10 +22,7 @@ export function NavigationBar() {
         padding: "12px",
       }}
     >
-      <Link
-        to="/notifications"
-        style={{ textDecoration: "none", color: "lightgrey" }}
-      >
+      <Link to="/" style={{ textDecoration: "none", color: "lightgrey" }}>
         <Notifications fontSize="medium" sx={{ cursor: "pointer" }} />
       </Link>
       <Link to="/" style={{ textDecoration: "none", color: "lightgrey" }}>
