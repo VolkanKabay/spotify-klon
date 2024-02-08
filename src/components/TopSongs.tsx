@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
 import axios from "axios";
@@ -15,9 +14,10 @@ import {
 export function TopSongs() {
   const [{ topTracks, token }, dispatch] = useStateProvider();
   const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
-  const [timeRange, setTimeRange] = useState("short_term"); // Default to short term
-  const [length, setLengthRange] = useState("8");
+  const [selectValue, setSelectValue] = useState("8-short_term"); // Combined value of length and timeRange
   useEffect(() => {
+    const [length, timeRange] = selectValue.split("-");
+
     const getTopTracks = async () => {
       try {
         const response = await axios.get(
@@ -57,44 +57,38 @@ export function TopSongs() {
       }
     };
     getTopTracks();
-  }, [token, dispatch, timeRange, length]);
+  }, [token, dispatch, selectValue]);
 
-  const handleTimeRangeChange = (event: SelectChangeEvent<string>) => {
-    setTimeRange(event.target.value);
-  };
-  const handleLengthChange = (event: SelectChangeEvent<string>) => {
-    setLengthRange(event.target.value);
+  const handleSelectChange = (event: SelectChangeEvent<string>) => {
+    setSelectValue(event.target.value);
   };
 
   return (
     <>
       <Box>
         <Select
-          value={length}
-          onChange={handleLengthChange}
-          sx={{
-            marginBottom: "1rem",
-            color: "white",
-            backgroundColor: "#232324",
-            marginRight: "1rem",
-          }}
-        >
-          <MenuItem value="8">Show 8 Songs</MenuItem>
-          <MenuItem value="16">Show 16 Songs</MenuItem>
-          <MenuItem value="40">Show 40 Songs</MenuItem>
-        </Select>
-        <Select
-          value={timeRange}
-          onChange={handleTimeRangeChange}
+          value={selectValue}
+          onChange={handleSelectChange}
           sx={{
             marginBottom: "1rem",
             color: "white",
             backgroundColor: "#232324",
           }}
         >
-          <MenuItem value="short_term">Last 4 Weeks</MenuItem>
-          <MenuItem value="medium_term">Last 6 Months</MenuItem>
-          <MenuItem value="long_term">All Time</MenuItem>
+          <MenuItem value="8-short_term">Show 8 Songs (Last 4 Weeks)</MenuItem>
+
+          <MenuItem value="40-short_term">
+            Show 40 Songs (Last 4 Weeks)
+          </MenuItem>
+          <MenuItem value="8-medium_term">
+            Show 8 Songs (Last 6 Months)
+          </MenuItem>
+
+          <MenuItem value="40-medium_term">
+            Show 40 Songs (Last 6 Months)
+          </MenuItem>
+          <MenuItem value="8-long_term">Show 8 Songs (All Time)</MenuItem>
+          <MenuItem value="40-long_term">Show 40 Songs (All Time)</MenuItem>
         </Select>
       </Box>
       <Box
