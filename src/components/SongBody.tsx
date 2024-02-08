@@ -197,7 +197,7 @@ export function SongBody() {
         <Box
           sx={{
             position: "absolute",
-            left: "40%",
+            left: "50%",
             display: "flex",
             flexDirection: "row",
           }}
@@ -273,7 +273,8 @@ export function SongBody() {
                 display: "flex",
                 flexDirection: "row",
                 position: "absolute",
-                left: "40%",
+                left: "50%",
+                textAlign: "start",
               }}
             >
               {track.album}
