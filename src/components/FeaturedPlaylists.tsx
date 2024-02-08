@@ -82,12 +82,44 @@ export function FeaturedPlaylists() {
                 flexDirection: "column",
                 alignItems: "start",
                 textAlign: "start",
-                height: "27rem",
+                height: "15rem",
               }}
             >
-              <Skeleton variant="rectangular" width="100%" height="5rem" />
-              <Skeleton variant="text" width="80%" height="2rem" />
-              <Skeleton variant="text" width="100%" height="10rem" />
+              <Skeleton variant="rectangular" width="100%" height="25rem" />
+              <Skeleton variant="text" width="100%" height="15rem" />
+            </Paper>
+            <Paper
+              sx={{
+                marginTop: "2rem",
+                padding: "1rem",
+                borderRadius: "10px",
+                backgroundColor: "rgba(0, 0, 0, 0.3)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "start",
+                textAlign: "start",
+                height: "15rem",
+              }}
+            >
+              <Skeleton variant="rectangular" width="100%" height="25rem" />
+              <Skeleton variant="text" width="100%" height="15rem" />
+            </Paper>
+            <Paper
+              sx={{
+                marginTop: "2rem",
+
+                padding: "1rem",
+                borderRadius: "10px",
+                backgroundColor: "rgba(0, 0, 0, 0.3)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "start",
+                textAlign: "start",
+                height: "15rem",
+              }}
+            >
+              <Skeleton variant="rectangular" width="100%" height="25rem" />
+              <Skeleton variant="text" width="100%" height="15rem" />
             </Paper>
           </Box>
         ))}
