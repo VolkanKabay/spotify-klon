@@ -25,9 +25,7 @@ function MusicAppBar({
   onPrevSong,
 }: Readonly<{
   onNextSong: () => void;
-  onPrevSong: () => void;
-  onCloseDrawer: () => void;
-  isMobile: boolean;
+  onPrevSong: () => void; 
 }>) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isShuffleActive, setIsShuffleActive] = useState(false);
