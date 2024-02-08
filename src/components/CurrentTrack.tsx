@@ -32,6 +32,10 @@ export default function CurrentTrack() {
             image: item.album.images[2].url,
             duration: item.duration_ms,
             progress: response.data.progress_ms,
+            external_urls: item.external_urls,
+            artist_external_urls: item.artists.map(
+              (artist: any) => artist.external_urls
+            ),
           };
 
           const progressPercentage =
@@ -96,12 +100,24 @@ export default function CurrentTrack() {
           alignItems: "start",
         }}
       >
-        <Typography fontWeight={800} fontSize={18}>
-          {currentlyPlaying.name}
-        </Typography>
-        <Typography fontSize={12}>
-          {currentlyPlaying.artist.join(", ")}
-        </Typography>
+        <a
+          href={currentlyPlaying.external_urls.spotify}
+          target="_blank"
+          style={{ textDecoration: "none", color: "white" }}
+        >
+          <Typography fontWeight={800} fontSize={18}>
+            {currentlyPlaying.name}
+          </Typography>
+        </a>
+        <a
+          href={currentlyPlaying.artist_external_urls[0].spotify}
+          target="_blank"
+          style={{ textDecoration: "none", color: "grey" }}
+        >
+          <Typography fontSize={12}>
+            {currentlyPlaying.artist.join(", ")}
+          </Typography>
+        </a>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography variant="body2">
             {formatTimestamps(currentlyPlaying.progress)}

@@ -82,7 +82,7 @@ export function FeaturedPlaylists() {
                 flexDirection: "column",
                 alignItems: "start",
                 textAlign: "start",
-                height: "15rem",
+                height: "18rem",
               }}
             >
               <Skeleton variant="rectangular" width="100%" height="25rem" />
@@ -98,7 +98,7 @@ export function FeaturedPlaylists() {
                 flexDirection: "column",
                 alignItems: "start",
                 textAlign: "start",
-                height: "15rem",
+                height: "18rem",
               }}
             >
               <Skeleton variant="rectangular" width="100%" height="25rem" />
@@ -115,7 +115,7 @@ export function FeaturedPlaylists() {
                 flexDirection: "column",
                 alignItems: "start",
                 textAlign: "start",
-                height: "15rem",
+                height: "18rem",
               }}
             >
               <Skeleton variant="rectangular" width="100%" height="25rem" />
@@ -164,7 +164,10 @@ export function FeaturedPlaylists() {
                   <img
                     src={playlist.image}
                     alt={playlist.name}
-                    style={{ borderRadius: "10px", marginBottom: "1rem" }}
+                    style={{
+                      borderRadius: "10px",
+                      marginBottom: "1rem",
+                    }}
                   />
                   <Typography
                     fontSize={20}
