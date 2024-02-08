@@ -15,7 +15,7 @@ import {
 export function TopSongs() {
   const [{ topTracks, token }, dispatch] = useStateProvider();
   const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
-  const [selectValue, setSelectValue] = useState("8-short_term"); // Combined value of length and timeRange
+  const [selectValue, setSelectValue] = useState("40-long_term"); // Combined value of length and timeRange
   useEffect(() => {
     const [length, timeRange] = selectValue.split("-");
 
