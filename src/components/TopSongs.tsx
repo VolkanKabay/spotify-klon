@@ -84,7 +84,7 @@ export function TopSongs() {
           gap: "1rem",
           paddingBottom: "6rem",
           margin: "auto",
-          maxWidth: isFHD ? "1800px" : "1200px",
+          maxWidth: isFHD ? "1800px" : "1350px",
         }}
       >
         {topTracks.map((track: any) => (
