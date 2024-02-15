@@ -23,7 +23,7 @@ const theme = createTheme({
 function Login() {
   const handleClick = () => {
     const clientId = "41bf781b5b38499686cd3c5ebaa1570c";
-    const redirectUri = "http://localhost:5173";
+    const redirectUri = "https://aesthetic-eclair-938ae7.netlify.app";
     const apiUrl = "https://accounts.spotify.com/authorize";
     const scopes = [
       "user-read-email",
