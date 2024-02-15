@@ -2,12 +2,11 @@ import axios from "axios";
 import { Key, useEffect } from "react";
 import { reducerCases } from "../utils/Constants";
 import { useStateProvider } from "../utils/StateProvider";
-import { Typography, useMediaQuery } from "@mui/material";
+import { Paper, Typography, useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system";
 
 export function DashboardItems() {
   const [{ savedTracks, token }, dispatch] = useStateProvider();
-  const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
 
   useEffect(() => {
     const getSavedTracks = async () => {
@@ -56,14 +55,18 @@ export function DashboardItems() {
   }, [token, dispatch]);
 
   return (
-    <Box
+    <Paper
       sx={{
+        borderRadius: "10px",
         display: "grid",
+        background: "transparent",
+        boxShadow: "none",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
         gridTemplateColumns: "repeat(4, 1fr)",
         gap: "1rem",
-        justifyContent: "center",
-        maxWidth: isFHD ? "1800px" : "1200px",
-        paddingBottom: "8rem",
+        textAlign: "start",
       }}
     >
       {savedTracks.map(
@@ -123,6 +126,6 @@ export function DashboardItems() {
           </Box>
         )
       )}
-    </Box>
+    </Paper>
   );
 }

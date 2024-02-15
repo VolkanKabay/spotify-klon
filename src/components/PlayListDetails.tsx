@@ -42,15 +42,6 @@ export function PlaylistDetails() {
       },
     },
   });
-  let leftPosition;
-  if (isMobile) {
-    leftPosition = "15%";
-  } else if (isFHD) {
-    leftPosition = "13%";
-  } else {
-    leftPosition = "12%";
-  }
-
   return (
     <ThemeProvider theme={theme}>
       <Drawer />

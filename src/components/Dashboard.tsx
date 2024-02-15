@@ -75,14 +75,17 @@ function Dashboard() {
           margin: 0,
         }}
       >
-        <Container className="lastSongs" maxWidth="xl">
+        <Container
+          className="lastSongs"
+          maxWidth="md"
+          sx={{ paddingBottom: "6rem" }}
+        >
           <Typography
             variant="h4"
             fontWeight={800}
             sx={{
               marginTop: "5rem",
               marginBottom: "2rem",
-              textAlign: "start",
             }}
           >
             {greeting}
@@ -95,7 +98,6 @@ function Dashboard() {
             sx={{
               marginTop: "5rem",
               marginBottom: "2rem",
-              textAlign: "start",
             }}
           >
             Deine Top Songs

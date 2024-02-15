@@ -10,11 +10,11 @@ import {
   Select,
   MenuItem,
   SelectChangeEvent,
+  Paper,
 } from "@mui/material";
 
 export function TopSongs() {
   const [{ topTracks, token }, dispatch] = useStateProvider();
-  const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
   const [selectValue, setSelectValue] = useState("40-long_term");
   useEffect(() => {
     const [length, timeRange] = selectValue.split("-");
@@ -92,14 +92,18 @@ export function TopSongs() {
           <MenuItem value="40-long_term">Show 40 Songs (All Time)</MenuItem>
         </Select>
       </Box>
-      <Box
+      <Paper
         sx={{
+          borderRadius: "10px",
           display: "grid",
+          background: "transparent",
+          boxShadow: "none",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: "1rem",
-          justifyContent: "center",
-          maxWidth: isFHD ? "1800px" : "1200px",
-          paddingBottom: "8rem",
+          textAlign: "start",
         }}
       >
         {topTracks.map((track: any) => (
@@ -129,7 +133,7 @@ export function TopSongs() {
                   src={track.image}
                   alt={track.name}
                   style={{
-                    width: "90px",
+                    width: "5.5rem",
                     height: "90px",
                     objectFit: "cover",
                     marginRight: "1rem",
@@ -153,7 +157,7 @@ export function TopSongs() {
             </a>
           </Box>
         ))}
-      </Box>
+      </Paper>
     </>
   );
 }
