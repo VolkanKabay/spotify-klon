@@ -58,13 +58,14 @@ export function PlaylistDetails() {
 
       <Paper
         sx={{
-          position: "fixed",
-          left: leftPosition,
-          right: 0,
-          top: 0,
           background: "linear-gradient(to top, #111 50%, #20105E)",
           overflowY: "auto",
-          height: "100%",
+          height: "100vh",
+          width: "100vw",
+          position: "fixed",
+          top: 0,
+          left: 300,
+          margin: 0,
         }}
       >
         <SongBody />
