@@ -97,19 +97,17 @@ export function TopSongs() {
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: "1rem",
-          padding: "1rem",
-          margin: "auto",
-
+          justifyContent: "center",
           maxWidth: isFHD ? "1800px" : "1200px",
-          paddingBottom: "7rem",
+          paddingBottom: "8rem",
         }}
       >
         {topTracks.map((track: any) => (
           <Box
             key={track.id}
             sx={{
-              width: "100%",
               marginBottom: "2rem",
+              width: "14vw",
             }}
           >
             <a
@@ -124,6 +122,7 @@ export function TopSongs() {
                   backgroundColor: "#282828",
                   borderRadius: "8px",
                   cursor: "pointer",
+                  flexDirection: "row",
                 }}
               >
                 <img

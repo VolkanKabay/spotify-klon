@@ -12,6 +12,7 @@ import { NavigationBar } from "./NavigationBar";
 
 import { DashboardItems } from "./DashboardItems";
 import { TopSongs } from "./TopSongs";
+import { Box } from "@mui/system";
 
 const theme = createTheme({
   typography: {
@@ -47,7 +48,6 @@ const theme = createTheme({
 
 function Dashboard() {
   const [greeting, setGreeting] = useState("");
-  const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
 
   useEffect(() => {
     const currentHour = new Date().getHours();
@@ -73,29 +73,29 @@ function Dashboard() {
           top: 0,
           left: 0,
           margin: 0,
-          paddingLeft: "5%",
         }}
       >
-        <Container maxWidth="xl">
+        <Container className="lastSongs" maxWidth="xl">
           <Typography
             variant="h4"
             fontWeight={800}
             sx={{
-              display: "flex",
-              marginLeft: isFHD ? "1rem" : "9rem",
               marginTop: "5rem",
+              marginBottom: "2rem",
+              textAlign: "start",
             }}
           >
             {greeting}
           </Typography>
+
           <DashboardItems />
           <Typography
             variant="h4"
             fontWeight={800}
             sx={{
-              display: "flex",
-              marginLeft: isFHD ? "1rem" : "9rem",
               marginTop: "5rem",
+              marginBottom: "2rem",
+              textAlign: "start",
             }}
           >
             Deine Top Songs

@@ -61,9 +61,9 @@ export function DashboardItems() {
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
         gap: "1rem",
-        padding: "1rem",
-        margin: "auto",
+        justifyContent: "center",
         maxWidth: isFHD ? "1800px" : "1200px",
+        paddingBottom: "8rem",
       }}
     >
       {savedTracks.map(
@@ -76,7 +76,7 @@ export function DashboardItems() {
           <Box
             key={track.id}
             sx={{
-              width: "100%",
+              width: "14vw",
               marginBottom: "2rem",
             }}
           >
@@ -92,6 +92,7 @@ export function DashboardItems() {
                   backgroundColor: "#282828",
                   borderRadius: "8px",
                   cursor: "pointer",
+                  flexDirection: "row",
                 }}
               >
                 <img

@@ -131,7 +131,9 @@ export function FeaturedPlaylists() {
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns: isFHD ? "repeat(5, 1fr)" : "repeat(3, 1fr)",
+        gridTemplateColumns: isFHD
+          ? "repeat(5, 1fr)"
+          : "repeat(auto-fill, minmax(250px, 1fr))",
         gap: "1rem",
         paddingBottom: "10rem",
         margin: "auto",
