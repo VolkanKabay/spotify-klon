@@ -6,7 +6,6 @@ import axios from "axios";
 import {
   Box,
   Typography,
-  useMediaQuery,
   Select,
   MenuItem,
   SelectChangeEvent,

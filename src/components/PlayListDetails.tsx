@@ -1,16 +1,9 @@
-import {
-  Paper,
-  ThemeProvider,
-  createTheme,
-  useMediaQuery,
-} from "@mui/material";
+import { Paper, ThemeProvider, createTheme } from "@mui/material";
 import { Drawer } from "./Drawer";
 import { SongBody } from "./SongBody";
 import { NavigationBar } from "./NavigationBar";
 
 export function PlaylistDetails() {
-  const isFHD = useMediaQuery("(min-width: 1920px) and (max-width: 2559px)");
-  const isMobile = useMediaQuery("(max-width: 1919px)");
   const theme = createTheme({
     typography: {
       fontFamily: "Figtree, sans-serif",

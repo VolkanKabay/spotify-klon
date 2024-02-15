@@ -5,14 +5,12 @@ import {
   ThemeProvider,
   Typography,
   createTheme,
-  useMediaQuery,
 } from "@mui/material";
 import { Drawer } from "./Drawer";
 import { NavigationBar } from "./NavigationBar";
 
 import { DashboardItems } from "./DashboardItems";
 import { TopSongs } from "./TopSongs";
-import { Box } from "@mui/system";
 
 const theme = createTheme({
   typography: {

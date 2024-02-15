@@ -2,7 +2,7 @@ import axios from "axios";
 import { Key, useEffect } from "react";
 import { reducerCases } from "../utils/Constants";
 import { useStateProvider } from "../utils/StateProvider";
-import { Paper, Typography, useMediaQuery } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
 export function DashboardItems() {
