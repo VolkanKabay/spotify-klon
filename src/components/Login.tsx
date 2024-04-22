@@ -9,7 +9,9 @@ import {
   createTheme,
   CssBaseline,
   ThemeProvider,
+  Toolbar,
 } from "@mui/material";
+import Image from "mui-image";
 const theme = createTheme({
   palette: {
     primary: {
@@ -23,7 +25,7 @@ const theme = createTheme({
 function Login() {
   const handleClick = () => {
     const clientId = "41bf781b5b38499686cd3c5ebaa1570c";
-    const redirectUri = "https://aesthetic-eclair-938ae7.netlify.app";
+    const redirectUri = "http://localhost:5173/";
     const apiUrl = "https://accounts.spotify.com/authorize";
     const scopes = [
       "user-read-email",
@@ -46,8 +48,30 @@ function Login() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar
-        sx={{ width: "100%", height: "100px", backgroundColor: "#121212" }}
-      />
+        position="absolute"
+        sx={{ backgroundColor: "black", top: "0%", padding: "3rem" }}
+      >
+        <Box
+          sx={{ display: "flex", position: "absolute", left: "3%", top: "25%" }}
+        >
+          <Image
+            src="../images/spoti-icon.png"
+            alt="Spotify Icon"
+            style={{
+              width: "40px",
+              height: "40px",
+              marginRight: "10px",
+            }}
+          />
+          <Typography
+            variant="h5"
+            fontSize={20}
+            sx={{ color: "#fff", fontWeight: "bold", paddingTop: "5px" }}
+          >
+            Spotify™
+          </Typography>
+        </Box>
+      </AppBar>
       <Paper
         elevation={3}
         sx={{
@@ -67,15 +91,39 @@ function Login() {
             gap: "30px",
           }}
         >
-          <Typography variant="h3" sx={{ color: "#fff" }}>
-            Log in to Spotify
+          <Typography variant="h4" fontWeight={600} sx={{ color: "#fff" }}>
+            Bei Spotify anmelden
           </Typography>
-          <Divider
+          <Button
+            variant="contained"
+          
             sx={{
-              width: "80%",
-              backgroundColor: "#555555",
+              color: "white",
+              fontWeight: "bolder",
+              backgroundColor: "#1DB954",
+
+              borderRadius: "50px",
+              ":hover": { backgroundColor: "#fff" },
             }}
-          />
+          >
+            Weiter mit Google
+          </Button>
+          <Button
+            variant="contained"
+          
+            sx={{
+              color: "white",
+              fontWeight: "bolder",
+              backgroundColor: "#1DB954",
+
+              borderRadius: "50px",
+              ":hover": { backgroundColor: "#fff" },
+            }}
+          >
+            Weiter mit Apple
+          </Button>
+          
+    
           <Box
             sx={{
               width: "50%",
@@ -120,16 +168,6 @@ function Login() {
           />
         </Box>
       </Paper>
-
-      <AppBar
-        sx={{
-          width: "100%",
-          height: "100px",
-          position: "fixed",
-          top: "95%",
-          backgroundColor: "#121212",
-        }}
-      />
     </ThemeProvider>
   );
 }

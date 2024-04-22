@@ -169,6 +169,7 @@ export function FeaturedPlaylists() {
                     style={{
                       borderRadius: "10px",
                       marginBottom: "1rem",
+                      
                     }}
                   />
                   <Typography
