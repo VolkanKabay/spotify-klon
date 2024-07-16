@@ -9,7 +9,6 @@ import {
   createTheme,
   CssBaseline,
   ThemeProvider,
-  Toolbar,
 } from "@mui/material";
 import Image from "mui-image";
 const theme = createTheme({
@@ -24,8 +23,8 @@ const theme = createTheme({
 });
 function Login() {
   const handleClick = () => {
-    const clientId = "41bf781b5b38499686cd3c5ebaa1570c";
-    const redirectUri = "http://localhost:5173/";
+    const clientId = ""; // Change this to your client ID
+    const redirectUri = ""; // Change this to your redirect URI
     const apiUrl = "https://accounts.spotify.com/authorize";
     const scopes = [
       "user-read-email",
@@ -96,7 +95,6 @@ function Login() {
           </Typography>
           <Button
             variant="contained"
-          
             sx={{
               color: "white",
               fontWeight: "bolder",
@@ -110,7 +108,6 @@ function Login() {
           </Button>
           <Button
             variant="contained"
-          
             sx={{
               color: "white",
               fontWeight: "bolder",
@@ -122,8 +119,7 @@ function Login() {
           >
             Weiter mit Apple
           </Button>
-          
-    
+
           <Box
             sx={{
               width: "50%",
